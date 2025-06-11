@@ -1,5 +1,11 @@
-package com.tpo.armarPartido.notificacion;
+package com.tpo.armarPartido.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
+
+@Getter
+@Setter
 public class Notificacion {
     private final String mensaje;
 
@@ -7,7 +13,4 @@ public class Notificacion {
         this.mensaje = mensaje;
     }
 
-    public String getMensaje() {
-        return mensaje;
-    }
 }

@@ -1,7 +1,7 @@
-package com.tpo.armarPartido.service;
+package com.tpo.armarPartido.controller;
 
 import com.tpo.armarPartido.model.Usuario;
-import com.tpo.armarPartido.model.UsuarioDTO;
+import com.tpo.armarPartido.dtos.UsuarioDTO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

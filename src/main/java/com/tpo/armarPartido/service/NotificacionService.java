@@ -1,4 +1,4 @@
-package com.tpo.armarPartido.notificacion;
+package com.tpo.armarPartido.service;
 
 import com.tpo.armarPartido.enums.EventoPartido;
 import com.tpo.armarPartido.model.Partido;

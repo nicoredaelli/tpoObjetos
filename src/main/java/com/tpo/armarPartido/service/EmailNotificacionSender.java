@@ -1,7 +1,8 @@
-package com.tpo.armarPartido.notificacion;
+package com.tpo.armarPartido.service;
 
+import com.tpo.armarPartido.model.Notificacion;
 import com.tpo.armarPartido.model.Usuario;
-
+import com.tpo.armarPartido.notificacion.NotificacionSender;
 /**
  * Implementación de envío de notificaciones por correo electrónico.
  * En este proyecto se simula con una impresión por consola.

@@ -1,4 +1,4 @@
-package com.tpo.armarPartido.notificacion;
+package com.tpo.armarPartido.service;
 
 import com.tpo.armarPartido.enums.EventoPartido;
 import com.tpo.armarPartido.model.Partido;
@@ -6,6 +6,6 @@ import com.tpo.armarPartido.model.Partido;
 /**
  * Observador de eventos de partido.
  */
-public interface ObserverPartido {
+public interface iObserver {
     void update(EventoPartido evento, Partido partido);
 }

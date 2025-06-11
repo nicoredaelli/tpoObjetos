@@ -1,6 +1,7 @@
-package com.tpo.armarPartido.notificacion;
+package com.tpo.armarPartido.service;
 
 import com.tpo.armarPartido.enums.MedioNotificacion;
+import com.tpo.armarPartido.model.Notificacion;
 import com.tpo.armarPartido.model.Usuario;
 
 import java.util.ArrayList;

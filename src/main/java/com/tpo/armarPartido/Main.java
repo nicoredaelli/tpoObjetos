@@ -3,7 +3,7 @@ package com.tpo.armarPartido;
 import com.tpo.armarPartido.enums.Deporte;
 import com.tpo.armarPartido.enums.Nivel;
 import com.tpo.armarPartido.enums.MedioNotificacion;
-import com.tpo.armarPartido.model.UsuarioDTO;
+import com.tpo.armarPartido.dtos.UsuarioDTO;
 import com.tpo.armarPartido.service.ControllerUsuario;
 
 import java.util.List;
