@@ -3,6 +3,7 @@ package com.tpo.armarPartido.service.estados;
 import com.tpo.armarPartido.model.Partido;
 
 public class Cancelado implements EstadoPartido {
+    private static final String mensaje = "El partido se cancelo.";
 
     @Override
     public void cancelar(Partido partido) {
@@ -31,6 +32,12 @@ public class Cancelado implements EstadoPartido {
     @Override
     public void finalizar(Partido partido) {
         // No aplica a este estado
+
+    }
+
+    @Override
+    public String getMessage() {
+        return mensaje;
 
     }
 

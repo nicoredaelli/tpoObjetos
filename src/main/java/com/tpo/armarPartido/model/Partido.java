@@ -36,7 +36,8 @@ public class Partido {
     public void cambiarEstado(EstadoPartido nuevo) {
         EstadoPartido estadoAnterior = this.estado;
         this.estado = nuevo;
-        notificarObservadores();
+
+        notificarObservadores(nuevo);
         // Chequear esto con Ilan - Explicacion de flujo
     }
 
@@ -59,11 +60,11 @@ public class Partido {
         observadores.remove(o);
     }
 
-    public void notificarObservadores(String estado) {
+    public void notificarObservadores(EstadoPartido estado) {
         for (iObserver o : observadores) {
             try {
                 // Chequear esto con Ilan - Explicacion de flujo
-                o.update(new Notificacion(estado));
+                o.update(new Notificacion(estado.getMessage()));
             } catch (Exception e) {
                 System.err.printf("Error al notificar observador: %s%n", e.getMessage());
             }

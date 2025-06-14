@@ -56,4 +56,10 @@ public class Confirmacion implements EstadoPartido {
 
     }
 
+    @Override
+    public String getMessage() {
+        return mensaje;
+
+    }
+
 }

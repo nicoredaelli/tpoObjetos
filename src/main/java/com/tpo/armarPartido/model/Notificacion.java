@@ -1,6 +1,7 @@
 package com.tpo.armarPartido.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 

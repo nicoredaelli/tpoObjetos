@@ -45,6 +45,12 @@ public class Finalizado implements EstadoPartido {
 
     }
 
+    @Override
+    public String getMessage() {
+        return mensaje;
+
+    }
+
     public void agregarComentario(Comentario comentario) {
         comentarios.add(comentario);
     }
