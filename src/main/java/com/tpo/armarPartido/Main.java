@@ -1,6 +1,8 @@
 package com.tpo.armarPartido;
 
+import java.util.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import com.tpo.armarPartido.controller.ControllerPartido;
@@ -9,11 +11,13 @@ import com.tpo.armarPartido.enums.Deporte;
 import com.tpo.armarPartido.enums.MedioNotificacion;
 import com.tpo.armarPartido.enums.Nivel;
 import com.tpo.armarPartido.model.Ubicacion;
+import com.tpo.armarPartido.model.Usuario;
+import com.tpo.armarPartido.service.EmparejamientoPorNivel;
 
 public class Main {
     public static void main(String[] args) {
     	
-    	System.out.println("Inicio ArmarPartido");
+    	System.out.println("Inicio App ArmarPartido");
     
     	// Creo controlador y usuarios. 
     	ControllerUsuario userController = ControllerUsuario.getInstancia();
@@ -27,16 +31,29 @@ public class Main {
     	userController.crearUsuario("Juan Perez", "juan@example.com", "1234", listaDeportesUsar, listaNivelUsar
     			, MedioNotificacion.EMAIL, new Ubicacion(1, 1));
     	
-        userController.crearUsuario("Ana Gómez", "ana@example.com", "abcd", listaDeportesUsar, listaNivelUsar,
+        userController.crearUsuario("Ana Gomez", "ana@example.com", "abcd", listaDeportesUsar, listaNivelUsar,
                 MedioNotificacion.SMS, new Ubicacion(2, 3));
 
-        userController.crearUsuario("Luis Martínez", "luis@example.com", "xyz789", listaDeportesUsar, listaNivelUsar,
+        userController.crearUsuario("Luis Martinez", "luis@example.com", "xyz789", listaDeportesUsar, listaNivelUsar,
                 MedioNotificacion.SMS, new Ubicacion(5, 8));
         
         System.err.println(userController.getUsuarios()); 
         
-        partidoController.crearPartido(Deporte.FUTBOL, 2, 10, new Ubicacion(1, 1), null, null, null, null, null, null);
-
+        // Previo a armar un partido necesito un usuario que lo cree y un horario del tipo Date. 
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 22); // 22 horas
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        Date horario = (Date) calendar.getTime();
+        Usuario usurioCreaPartido = userController.getUsuarioPorNombre("Luis Martinez");
+        
+        partidoController.crearPartido(Deporte.FUTBOL, 2, 10, new Ubicacion(1, 1), horario, new EmparejamientoPorNivel(), usurioCreaPartido, Nivel.AVANZADO );
+        partidoController.buscarPartidosPorNivel(Nivel.AVANZADO);
+        
+        Usuario usuarioNuevoDelPartido = userController.getUsuarioPorNombre("Juan Perez");
+        partidoController.agregarJugadorAPartido(0, usuarioNuevoDelPartido);
+        
 
         
 /*

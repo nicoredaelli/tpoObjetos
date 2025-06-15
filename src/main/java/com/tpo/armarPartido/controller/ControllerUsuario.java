@@ -19,6 +19,7 @@ public class ControllerUsuario {
     }
 
     public static ControllerUsuario getInstancia() {
+    	System.out.println("Inicio Controlador de Usuarios ");
         if (instancia == null) {
             instancia = new ControllerUsuario();
         }
@@ -46,6 +47,15 @@ public class ControllerUsuario {
 
     public List<Usuario> getUsuarios() {
         return new ArrayList<>(usuarios);
+    }
+    
+    public Usuario getUsuarioPorNombre(String nombre) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNombre().equalsIgnoreCase(nombre)) {
+                return usuario;
+            }
+        }
+        return null;
     }
 
 

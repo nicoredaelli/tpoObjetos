@@ -6,12 +6,14 @@ import java.util.List;
 
 import com.tpo.armarPartido.enums.Deporte;
 import com.tpo.armarPartido.enums.Nivel;
+import com.tpo.armarPartido.model.Notificador;
 import com.tpo.armarPartido.model.Partido;
 import com.tpo.armarPartido.model.Ubicacion;
 import com.tpo.armarPartido.model.Usuario;
 import com.tpo.armarPartido.service.EstrategiaEmparejamiento;
 import com.tpo.armarPartido.service.iObserver;
 import com.tpo.armarPartido.service.estados.EstadoPartido;
+import com.tpo.armarPartido.service.estados.NecesitamosJugadores;
 
 public class ControllerPartido {
 	
@@ -23,17 +25,62 @@ public class ControllerPartido {
     }
 
     public static ControllerPartido getInstancia() {
-        System.out.println("Inicio Controlador de partidos ");
+        System.out.println("Inicio Controlador de Partidos ");
     	if (instancia == null) {
             instancia = new ControllerPartido();
         }
         return instancia;
     }
     
-    public void crearPartido(Deporte deporte, int cantidadJugadores, int duracion, Ubicacion ubicacion, Date horario, EstadoPartido estado, EstrategiaEmparejamiento emparejamiento, List<Usuario> jugadoresParticipan, Nivel nivel, List<iObserver> observadores) {
-    	Partido nuevo = new Partido(deporte, cantidadJugadores, duracion, ubicacion, horario, estado, emparejamiento, jugadoresParticipan, nivel, observadores);
+    public void crearPartido(Deporte deporte, int cantidadJugadores, int duracion, Ubicacion ubicacion, Date horario, EstrategiaEmparejamiento emparejamiento, Usuario usuarioCreador, Nivel nivel) {
+    	// Lo que necesito para crear cualquier Partido
+    	EstadoPartido estadoInicial = new NecesitamosJugadores();
+    	List<Usuario> listaJugadoresParticipan = new ArrayList<Usuario>();
+    	listaJugadoresParticipan.add(usuarioCreador);
+    	Notificador notificador = new Notificador();
+    	List<iObserver> observadores = new ArrayList<iObserver>();
+    	observadores.add(notificador);
+    	// Creo Partido con lista de usuarios con el primer usuario como creador (owner) y la lista de observadores con un observador notificador. 
+    	Partido nuevo = new Partido(deporte, cantidadJugadores, duracion, ubicacion, horario, estadoInicial, emparejamiento, listaJugadoresParticipan, nivel, observadores);
     	partidos.add(nuevo);
     	System.out.println("Se creo un nuevo partido de " + nuevo.getDeporte());
+    }
+    
+    public void buscarPartidosPorNivel(Nivel nivel) {
+        System.out.println("Buscando partidos con nivel: " + nivel);
+        boolean encontrados = false;
+
+        for (int i = 0; i < partidos.size(); i++) {
+            Partido partido = partidos.get(i);
+            if (partido.getNivel().equals(nivel)) {
+                System.out.println("ID Partido: " + i);
+                System.out.println(" - Deporte: " + partido.getDeporte());
+                System.out.println(" - Nivel: " + partido.getNivel());
+                System.out.println(" - Ubicación: " + partido.getUbicacion());
+                System.out.println(" - Horario: " + partido.getHorario());
+                System.out.println(" - Cantidad de jugadores: " + partido.getCantidadJugadores());
+                System.out.println(" - Jugadores actuales: " + partido.getJugadoresParticipan().size());
+                System.out.println("-----------------------------------");
+                encontrados = true;
+            }
+        }
+
+        if (!encontrados) {
+            System.out.println("No se encontraron partidos con el nivel: " + nivel);
+        }
+    }
+    
+    public Partido getPartidoPorID(int id) {
+    	return partidos.get(id);
+
+    }
+    
+    public void agregarJugadorAPartido(int idPartido, Usuario jugadorNuevo) {
+    	Partido partido = getPartidoPorID(idPartido);
+    	partido.agregarJugador(jugadorNuevo);
+    	System.out.println("Se agrego jugador "+jugadorNuevo+" al partido: "+partido.getDeporte()+" del nivel: "+partido.getNivel());
+    	System.out.println("-----------------------------------");
+    	
     }
 
 }

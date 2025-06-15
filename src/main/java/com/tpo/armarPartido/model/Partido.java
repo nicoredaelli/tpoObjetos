@@ -53,9 +53,6 @@ public class Partido {
     public void agregarJugador(Usuario jugador) {
         if (this.jugadoresParticipan.size() < this.cantidadJugadores) {
             jugadoresParticipan.add(jugador);
-            String mensaje = "Nuevo jugador se unió al partido: " + jugador.getNombre();
-            Notificacion notificacion = new Notificacion(mensaje);
-            notificarObservadores();
         } else {
             System.out.println("El equipo está completo.");
         }
@@ -121,7 +118,12 @@ public class Partido {
         return this.ubicacion;
     }
 
-    public Object getDeporte() {
+    public Deporte getDeporte() {
         return this.deporte;
     }
+    
+    public EstadoPartido getEstado() {
+    	return this.estado;
+    }
+    
 }
