@@ -46,7 +46,7 @@ public class Notificador implements iObserver {
 
                     // Enviamos la notificacion en base a la estrategia seleccionada
                     estrategiaDeNotificacion.enviarNotificacion(
-                            new Notificacion(partido.getEstado().getMessage())
+                            new Notificacion(partido.getEstado().getMessage(), usuario)
                     );
                 }
             }
