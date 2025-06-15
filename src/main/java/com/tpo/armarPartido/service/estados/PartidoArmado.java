@@ -31,8 +31,10 @@ public class PartidoArmado implements EstadoPartido {
     public void confirmar(Partido partido) {
         // Debemos validar antes que el usuario este en este partido.
         confirmaciones++;
+        System.out.println("Un usuario confirmo");
         if (confirmaciones >= partido.getJugadoresParticipan().size()) {
             partido.cambiarEstado(new Confirmacion());
+            
             
         }
     }

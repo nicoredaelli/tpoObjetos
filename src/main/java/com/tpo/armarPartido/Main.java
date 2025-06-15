@@ -64,10 +64,6 @@ public class Main {
         partidoController.confirmarPartido(0, Ana);
         partidoController.confirmarPartido(0, Luis);
         
-        
-        
-        
-
 
     }
 } 
