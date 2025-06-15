@@ -57,8 +57,8 @@ public class Main {
         partidoController.agregarJugadorAPartido(idPartidoElegido, usuarioNuevoDelPartido);
         partidoController.armarPartido(idPartidoElegido);
         
-        partidoController.buscarPartidosPorNivel(Nivel.AVANZADO);
-       
+        System.out.println(partidoController.getPartidoID(idPartidoElegido));
+
 
     }
 } 

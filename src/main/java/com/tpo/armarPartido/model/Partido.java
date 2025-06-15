@@ -43,7 +43,15 @@ public class Partido {
         this.observadores = observadores != null ? observadores : new ArrayList<>();
     }
 
-    public void cambiarEstado(EstadoPartido nuevo) {
+    @Override
+	public String toString() {
+		return "Partido [deporte=" + deporte + ", cantidadJugadores=" + cantidadJugadores + ", duracion=" + duracion
+				+ ", ubicacion=" + ubicacion + ", horario=" + horario + ", estado=" + estado + ", emparejamiento="
+				+ emparejamiento + ", jugadoresParticipan=" + jugadoresParticipan + ", nivel=" + nivel
+				+ ", observadores=" + observadores + "]";
+	}
+
+	public void cambiarEstado(EstadoPartido nuevo) {
         EstadoPartido estadoAnterior = this.estado;
         this.estado = nuevo;
         // Crear notificación con información del cambio

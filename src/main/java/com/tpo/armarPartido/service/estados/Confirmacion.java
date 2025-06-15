@@ -15,7 +15,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Confirmacion implements EstadoPartido {
-    private static final String mensaje = "El partido esta listo para comenzar.";
+    @Override
+	public String toString() {
+		return "Confirmacion";
+	}
+
+	private static final String mensaje = "El partido esta listo para comenzar.";
 
     @Override
     public void cancelar(Partido partido) {

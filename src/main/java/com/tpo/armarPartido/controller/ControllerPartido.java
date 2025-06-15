@@ -89,6 +89,10 @@ public class ControllerPartido {
     	System.out.println(partidos.get(id).getEstado()); 
     }
     
+    public Partido getPartidoID(int id) {
+    	return partidos.get(id);
+    }
+    
     // Manejo de estados:
     
     public void armarPartido(int id) {

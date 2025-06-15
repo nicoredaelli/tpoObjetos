@@ -6,6 +6,11 @@ public class Cancelado implements EstadoPartido {
     private static final String mensaje = "El partido se cancelo.";
 
     @Override
+	public String toString() {
+		return "Cancelado";
+	}
+
+	@Override
     public void cancelar(Partido partido) {
         // No aplica a este estado
 

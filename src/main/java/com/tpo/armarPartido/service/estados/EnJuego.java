@@ -13,7 +13,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class EnJuego implements EstadoPartido {
-    private static final String mensaje = "El partido ya comenzo!";
+    @Override
+	public String toString() {
+		return "EnJuego";
+	}
+
+	private static final String mensaje = "El partido ya comenzo!";
 
     @Override
     public void cancelar(Partido partido) {

@@ -16,6 +16,11 @@ public class Finalizado implements EstadoPartido {
     private List<Comentario> comentarios;
 
     @Override
+	public String toString() {
+		return "Finalizado []";
+	}
+
+	@Override
     public void cancelar(Partido partido) {
         // No aplica.
 
