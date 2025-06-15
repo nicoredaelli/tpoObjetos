@@ -11,12 +11,22 @@ import lombok.Setter;
 @Builder
 public class Notificacion {
     private final String mensaje;
+    private Usuario usuario;
 
-    public Notificacion(String mensaje){
+    public Notificacion(String mensaje, Usuario usuario){
         this.mensaje = mensaje;
+        this.usuario = usuario;
     }
 
     public String getMensaje() {
         return mensaje;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
