@@ -1,18 +1,76 @@
 /*
 package com.tpo.armarPartido.controller;
 
-import com.tpo.armarPartido.model.Usuario;
-import com.tpo.armarPartido.dtos.UsuarioDTO;
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Pattern;
 
-*/
+import com.tpo.armarPartido.dtos.UsuarioDTO;
+import com.tpo.armarPartido.enums.Deporte;
+import com.tpo.armarPartido.enums.MedioNotificacion;
+import com.tpo.armarPartido.enums.Nivel;
+import com.tpo.armarPartido.model.Ubicacion;
+import com.tpo.armarPartido.model.Usuario;
+
+public class ControllerUsuario {
+    private static ControllerUsuario instancia;
+    private List<Usuario> usuarios;
+
+    private ControllerUsuario() {
+        usuarios = new ArrayList<>();
+    }
+
+    public static ControllerUsuario getInstancia() {
+        if (instancia == null) {
+            instancia = new ControllerUsuario();
+        }
+        return instancia;
+    }
+
+    public void crearUsuario(String nombre, String correo, String contrasena, List<Deporte> deportesFavoritos, List<Nivel> nivelesDeportes, MedioNotificacion medioNotificacion, Ubicacion ubicacion) {
+    	Usuario nuevo = new Usuario(nombre, correo, contrasena, deportesFavoritos, nivelesDeportes, medioNotificacion, ubicacion);
+        usuarios.add(nuevo);
+        System.err.println(nuevo.getNombre());
+    }
+
+    public void eliminarUsuario(String correo) {
+        usuarios.removeIf(u -> u.getCorreo().equalsIgnoreCase(correo));
+    }
+
+    public void modificarUsuario(String correo, Usuario usuarioModificado) {
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getCorreo().equalsIgnoreCase(correo)) {
+                usuarios.set(i, usuarioModificado);
+                return;
+            }
+        }
+    }
+
+    public List<Usuario> getUsuarios() {
+        return new ArrayList<>(usuarios);
+    }
+
+    public UsuarioDTO toDTO(Usuario usuario) {
+        UsuarioDTO dto = new UsuarioDTO(usuario.getNombre(), usuario.getCorreo(), usuario.getDeportesFavoritos(), usuario.getNivelesDeportes(), usuario.getMedioNotificacion(), usuario.getUbicacion());
+        dto.setNombre(usuario.getNombre());
+        dto.setCorreo(usuario.getCorreo());
+        dto.setDeportesFavoritos(usuario.getDeportesFavoritos());
+        dto.setNivelesDeportes(usuario.getNivelesDeportes());
+        dto.setMedioNotificacion(usuario.getMedioNotificacion());
+        dto.setUbicacion(usuario.getUbicacion());
+        return dto;
+    }
+
+}
+
+
+
 /**
  * Controlador para la gestión de usuarios: creación, modificación, eliminación y búsqueda.
- *//*
-
+ */
+/*
 public class ControllerUsuario {
     private List<Usuario> usuarios;
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
@@ -21,7 +79,6 @@ public class ControllerUsuario {
 /**
      * Constructor: inicializa la lista de usuarios.
      *//*
-
     public ControllerUsuario() {
         this.usuarios = new ArrayList<>();
     }
@@ -33,7 +90,6 @@ public class ControllerUsuario {
      * @param contrasena Contraseña del usuario
      * @return true si se creó correctamente, false en caso contrario
      *//*
-
     public boolean crearUsuario(UsuarioDTO dto, String contrasena) {
         if (!validarCampos(dto) || !validarCorreo(dto.getCorreo()) || contrasena == null || contrasena.isEmpty()) {
             return false;
@@ -52,14 +108,13 @@ public class ControllerUsuario {
         usuarios.add(nuevoUsuario);
         return true;
     }
-
-    */
-/**
+*/
+    /**
      * Modifica un usuario existente si los datos son válidos.
      * @param dto DTO con los datos a modificar
      * @return true si se modificó correctamente, false si no se encontró o datos inválidos
-     *//*
-
+     */
+/*
     public boolean modificarUsuario(UsuarioDTO dto) {
         if (!validarCampos(dto) || !validarCorreo(dto.getCorreo())) {
             return false;
@@ -81,8 +136,7 @@ public class ControllerUsuario {
      * Elimina un usuario existente por correo.
      * @param dto DTO con el correo del usuario a eliminar
      * @return true si se eliminó correctamente, false si no se encontró
-     *//*
-
+     */ /*
     public boolean eliminarUsuario(UsuarioDTO dto) {
         Optional<Usuario> usuarioOpt = buscarUsuarioPorCorreo(dto.getCorreo());
         if (usuarioOpt.isEmpty()) {
@@ -90,15 +144,12 @@ public class ControllerUsuario {
         }
         usuarios.remove(usuarioOpt.get());
         return true;
-    }
-
-    */
-/**
+    }/*
+    /**
      * Busca un usuario por correo.
      * @param correo Correo a buscar
      * @return Optional con el usuario si existe, vacío si no
-     *//*
-
+     */ /*
     public Optional<Usuario> buscarUsuarioPorCorreo(String correo) {
         return usuarios.stream()
                 .filter(u -> u.getCorreo().equalsIgnoreCase(correo))
@@ -109,8 +160,7 @@ public class ControllerUsuario {
 /**
      * Lista todos los usuarios.
      * @return Lista de usuarios
-     *//*
-
+     */ /*
     public List<Usuario> listarUsuarios() {
         return usuarios;
     }
@@ -128,4 +178,7 @@ public class ControllerUsuario {
     private boolean validarCorreo(String correo) {
         return correo != null && EMAIL_PATTERN.matcher(correo).matches();
     }
-} */
+    */
+
+
+

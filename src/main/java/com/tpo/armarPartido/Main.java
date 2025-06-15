@@ -1,41 +1,53 @@
 package com.tpo.armarPartido;
 
 
-import com.tpo.armarPartido.enums.Deporte;
-import com.tpo.armarPartido.enums.MedioNotificacion;
-import com.tpo.armarPartido.enums.Nivel;
-import com.tpo.armarPartido.model.Partido;
-import com.tpo.armarPartido.model.Ubicacion;
-import com.tpo.armarPartido.model.Usuario;
-import com.tpo.armarPartido.service.*;
-import com.tpo.armarPartido.service.estados.NecesitamosJugadores;
-import com.tpo.armarPartido.service.estados.PartidoArmado;
-
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.tpo.armarPartido.controller.ControllerPartido;
+import com.tpo.armarPartido.controller.ControllerUsuario;
+import com.tpo.armarPartido.enums.Deporte;
+import com.tpo.armarPartido.enums.MedioNotificacion;
+import com.tpo.armarPartido.dtos.UsuarioDTO;
+import com.tpo.armarPartido.service.ControllerUsuario;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        // Usuario Implementa el iObserver para poder notificar a cada usuario del partido.
-        // Los observadores son los USUARIOS.
-        // Crear usuarios con diferentes medios de notificación
-        Usuario usuario1 = new Usuario("Ezequiel", "ezequiel@email.com", "pass123",
-                List.of(Deporte.FUTBOL), List.of(Nivel.INTERMEDIO),
-                MedioNotificacion.EMAIL, null);
+        ControllerUsuario controller = new ControllerUsuario();
 
-        Usuario usuario2 = new Usuario("Dario", "dario@email.com", "pass456",
-                List.of(Deporte.FUTBOL), List.of(Nivel.INTERMEDIO),
-                MedioNotificacion.SMS, null);
+        // Crear un usuario válido
+        UsuarioDTO dto = new UsuarioDTO(
+            "Juan Pérez",
+            "juan@example.com",
+            List.of(Deporte.FUTBOL),
+            List.of(Nivel.INTERMEDIO),
+            MedioNotificacion.EMAIL
+        );
+        boolean creado = controller.crearUsuario(dto, "miContrasena123");
+        System.out.println("Usuario creado: " + creado);
 
-        // Crear partido y agregar observadores
-        Partido partido = new Partido(Nivel.INTERMEDIO,List.of(usuario1),new EmparejamientoPorNivel(),new NecesitamosJugadores(),new Date(5),new Ubicacion(),5,10,Deporte.FUTBOL);
-        partido.agregarObservador(usuario1);
-        partido.agregarObservador(usuario2);
+        // Intentar crear el mismo usuario (debería fallar)
+        boolean creado2 = controller.crearUsuario(dto, "otraClave");
+        System.out.println("Usuario creado (repetido): " + creado2);
 
-        // Como cambio de estrategia de notificacion es lo que me queda la duda ?
-        //partido.cambiarEstrategiaNotificacion(new NotificacionSMS());
-        partido.cambiarEstado(new PartidoArmado());
+        // Modificar usuario
+        UsuarioDTO dtoMod = new UsuarioDTO(
+            "Juan P.",
+            "juan@example.com",
+            List.of(Deporte.FUTBOL, Deporte.BASQUET),
+            List.of(Nivel.AVANZADO),
+            MedioNotificacion.SMS
+        );
+        boolean modificado = controller.modificarUsuario(dtoMod);
+        System.out.println("Usuario modificado: " + modificado);
 
+        // Eliminar usuario
+        boolean eliminado = controller.eliminarUsuario(dto);
+        System.out.println("Usuario eliminado: " + eliminado);
+
+        // Listar usuarios (debería estar vacío)
+        System.out.println("Usuarios actuales: " + controller.listarUsuarios().size());
     }
 }
