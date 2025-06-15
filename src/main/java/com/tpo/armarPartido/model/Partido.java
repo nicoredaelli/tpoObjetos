@@ -15,7 +15,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Partido {
 
     private Deporte deporte;
@@ -27,70 +26,66 @@ public class Partido {
     private EstrategiaEmparejamiento emparejamiento;
     private List<Usuario> jugadoresParticipan;
     private Nivel nivel;
-    private List<iObserver> observadores;
+    private List<iObserver> observadores; // Lista de Notificadores
 
-    
+    public Partido(Deporte deporte, int cantidadJugadores, int duracion, Ubicacion ubicacion, Date horario,
+                   EstadoPartido estado, EstrategiaEmparejamiento emparejamiento, List<Usuario> jugadoresParticipan,
+                   Nivel nivel, List<iObserver> observadores) {
+        this.deporte = deporte;
+        this.cantidadJugadores = cantidadJugadores;
+        this.duracion = duracion;
+        this.ubicacion = ubicacion;
+        this.horario = horario;
+        this.estado = estado;
+        this.emparejamiento = emparejamiento;
+        this.jugadoresParticipan = jugadoresParticipan != null ? jugadoresParticipan : new ArrayList<>();
+        this.nivel = nivel;
+        this.observadores = observadores != null ? observadores : new ArrayList<>();
+    }
 
-
-
-	public Partido(Deporte deporte, int cantidadJugadores, int duracion, Ubicacion ubicacion, Date horario,
-			EstadoPartido estado, EstrategiaEmparejamiento emparejamiento, List<Usuario> jugadoresParticipan,
-			Nivel nivel, List<iObserver> observadores) {
-		this.deporte = deporte;
-		this.cantidadJugadores = cantidadJugadores;
-		this.duracion = duracion;
-		this.ubicacion = ubicacion;
-		this.horario = horario;
-		this.estado = estado;
-		this.emparejamiento = emparejamiento;
-		this.jugadoresParticipan = jugadoresParticipan;
-		this.nivel = nivel;
-		this.observadores = observadores;
-	}
-
-	public void cambiarEstado(EstadoPartido nuevo) {
+    public void cambiarEstado(EstadoPartido nuevo) {
         EstadoPartido estadoAnterior = this.estado;
         this.estado = nuevo;
-        // notificarObservadores();
-        // Chequear esto con Ilan - Explicacion de flujo
+        // Crear notificación con información del cambio
+        notificarObservadores();
     }
 
-    public void emparejarJugadores() {
-        if (emparejamiento == null) {
-            throw new IllegalStateException("No se definio una estrategia de emparejamiento");
-        }
-        this.jugadoresParticipan = emparejamiento.emparejar(this, this.jugadoresParticipan);
-    }
-
-    public void agregarObservador(iObserver o) {
-        if (o != null && !observadores.contains(o)) {
-            observadores.add(o);
+    public void agregarJugador(Usuario jugador) {
+        if (this.jugadoresParticipan.size() < this.cantidadJugadores) {
+            jugadoresParticipan.add(jugador);
+            String mensaje = "Nuevo jugador se unió al partido: " + jugador.getNombre();
+            Notificacion notificacion = new Notificacion(mensaje);
+            notificarObservadores();
+        } else {
+            System.out.println("El equipo está completo.");
         }
     }
 
-    public void quitarObservador(iObserver o) {
-        observadores.remove(o);
+    public void agregarObservador(iObserver observador) {
+        if (observador != null && !observadores.contains(observador)) {
+            observadores.add(observador);
+        }
     }
 
-    public void notificarObservadores(EstadoPartido estado) {
-        for (iObserver o : observadores) {
+    public void quitarObservador(iObserver observador) {
+        observadores.remove(observador);
+    }
+
+    private void notificarObservadores() {
+        for (iObserver observador : observadores) {
             try {
-                // Chequear esto con Ilan - Explicacion de flujo
-                // o.update(new Notificacion(estado));
+                observador.actualizar(this);
             } catch (Exception e) {
                 System.err.printf("Error al notificar observador: %s%n", e.getMessage());
             }
         }
     }
 
-    public void agregarJugador(Usuario jugador) {
-
-        if (this.cantidadJugadores >= this.jugadoresParticipan.size()) {
-            jugadoresParticipan.add(jugador);
-            System.out.println("Se agrego el jugador " + jugador + " con exito. ");
-        } else {
-            System.out.println("El equipo esta completo.");
+    public void emparejarJugadores() {
+        if (emparejamiento == null) {
+            throw new IllegalStateException("No se definió una estrategia de emparejamiento");
         }
+        this.jugadoresParticipan = emparejamiento.emparejar(this, this.jugadoresParticipan);
     }
 
     public void comentar(Usuario jugador, String mensaje) {
@@ -100,41 +95,33 @@ public class Partido {
         } else {
             System.out.println("No se puede comentar. El partido aún no finalizó.");
         }
-
     }
 
-	public int getCantidadJugadores() {
-		return this.cantidadJugadores;
-	}
+    public int getCantidadJugadores() {
+        return this.cantidadJugadores;
+    }
 
-	public Date getHorario() {
-		return this.horario;
-	}
+    public Date getHorario() {
+        return this.horario;
+    }
 
-	public int getDuracion() {
-		return this.duracion;
-	}
+    public int getDuracion() {
+        return this.duracion;
+    }
 
-	public List<Usuario> getJugadoresParticipan() {
-		return this.jugadoresParticipan;
-	}
+    public List<Usuario> getJugadoresParticipan() {
+        return this.jugadoresParticipan;
+    }
 
-	public Nivel getNivel() {
-		return this.nivel;
-	}
+    public Nivel getNivel() {
+        return this.nivel;
+    }
 
-	public Ubicacion getUbicacion() {
-		return this.ubicacion;
-	}
+    public Ubicacion getUbicacion() {
+        return this.ubicacion;
+    }
 
-	public Object getDeporte() {
-		return this.deporte;
-	}
-
+    public Object getDeporte() {
+        return this.deporte;
+    }
 }
-
-	
-	
-
-	
-	

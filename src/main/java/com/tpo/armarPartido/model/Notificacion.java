@@ -1,5 +1,6 @@
 package com.tpo.armarPartido.model;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,6 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 public class Notificacion {
     private final String mensaje;
 

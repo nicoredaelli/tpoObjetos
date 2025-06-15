@@ -36,7 +36,8 @@ public class Main {
         System.err.println(userController.getUsuarios()); 
         
         partidoController.crearPartido(Deporte.FUTBOL, 2, 10, new Ubicacion(1, 1), null, null, null, null, null, null);
-        
+
+
         
 /*
         Usuario usuario1 = new Usuario("Ezequiel", "ezequiel@email.com", "pass123",
