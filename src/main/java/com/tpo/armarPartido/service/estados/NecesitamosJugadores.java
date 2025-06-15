@@ -13,6 +13,11 @@ public class NecesitamosJugadores implements EstadoPartido {
     }
 
     @Override
+	public String toString() {
+		return "NecesitamosJugadores";
+	}
+
+	@Override
     public void armar(Partido partido) {
         if (partido.getJugadoresParticipan().size() == partido.getCantidadJugadores()) {
             partido.cambiarEstado(new PartidoArmado());

@@ -14,6 +14,7 @@ import com.tpo.armarPartido.service.EstrategiaEmparejamiento;
 import com.tpo.armarPartido.service.iObserver;
 import com.tpo.armarPartido.service.estados.EstadoPartido;
 import com.tpo.armarPartido.service.estados.NecesitamosJugadores;
+import com.tpo.armarPartido.service.estados.PartidoArmado;
 
 public class ControllerPartido {
 	
@@ -60,6 +61,7 @@ public class ControllerPartido {
                 System.out.println(" - Horario: " + partido.getHorario());
                 System.out.println(" - Cantidad de jugadores: " + partido.getCantidadJugadores());
                 System.out.println(" - Jugadores actuales: " + partido.getJugadoresParticipan().size());
+                System.out.println(" - Estado: " + partido.getEstado());
                 System.out.println("-----------------------------------");
                 encontrados = true;
             }
@@ -81,6 +83,18 @@ public class ControllerPartido {
     	System.out.println("Se agrego jugador "+jugadorNuevo+" al partido: "+partido.getDeporte()+" del nivel: "+partido.getNivel());
     	System.out.println("-----------------------------------");
     	
+    }
+    
+    public void printEstadoPartidoID (int id) {
+    	System.out.println(partidos.get(id).getEstado()); 
+    }
+    
+    // Manejo de estados:
+    
+    public void armarPartido(int id) {
+    	Partido partido = partidos.get(id);
+    	EstadoPartido estadoActual = partido.getEstado();
+    	estadoActual.armar(partido);
     }
 
 }

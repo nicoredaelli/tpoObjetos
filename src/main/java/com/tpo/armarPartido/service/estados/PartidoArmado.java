@@ -16,8 +16,13 @@ public class PartidoArmado implements EstadoPartido {
     public void cancelar(Partido partido) {
         partido.cambiarEstado(new Cancelado());
     }
-
+    
     @Override
+	public String toString() {
+		return "PartidoArmado";
+	}
+
+	@Override
     public void armar(Partido partido) {
         // No aplica. El partido ya está armado.
     }
