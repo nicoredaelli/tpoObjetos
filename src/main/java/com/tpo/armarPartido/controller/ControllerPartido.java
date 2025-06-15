@@ -10,6 +10,8 @@ import com.tpo.armarPartido.model.Notificador;
 import com.tpo.armarPartido.model.Partido;
 import com.tpo.armarPartido.model.Ubicacion;
 import com.tpo.armarPartido.model.Usuario;
+import com.tpo.armarPartido.service.AdapterMail;
+import com.tpo.armarPartido.service.AdapterNotificacionMail;
 import com.tpo.armarPartido.service.EstrategiaEmparejamiento;
 import com.tpo.armarPartido.service.iObserver;
 import com.tpo.armarPartido.service.estados.EstadoPartido;
@@ -38,7 +40,8 @@ public class ControllerPartido {
     	EstadoPartido estadoInicial = new NecesitamosJugadores();
     	List<Usuario> listaJugadoresParticipan = new ArrayList<Usuario>();
     	listaJugadoresParticipan.add(usuarioCreador);
-    	Notificador notificador = new Notificador();
+        AdapterNotificacionMail adapter = new AdapterMail(); // agrego el adaptermail
+        Notificador notificador = new Notificador(adapter);
     	List<iObserver> observadores = new ArrayList<iObserver>();
     	observadores.add(notificador);
     	// Creo Partido con lista de usuarios con el primer usuario como creador (owner) y la lista de observadores con un observador notificador. 
