@@ -38,6 +38,26 @@ public class Main {
         partidoController.crearPartido(Deporte.FUTBOL, 2, 10, new Ubicacion(1, 1), null, null, null, null, null, null);
         
         
+/*
+        Usuario usuario1 = new Usuario("Ezequiel", "ezequiel@email.com", "pass123",
+                List.of(Deporte.FUTBOL), List.of(Nivel.INTERMEDIO),
+                MedioNotificacion.EMAIL, null);
+
+        Usuario usuario2 = new Usuario("Dario", "dario@email.com", "pass456",
+                List.of(Deporte.FUTBOL), List.of(Nivel.INTERMEDIO),
+                MedioNotificacion.SMS, null);
+
+        // Crear partido y agregar observadores
+        Partido partido = new Partido(Nivel.INTERMEDIO,List.of(usuario1),new EmparejamientoPorNivel(),new NecesitamosJugadores(),new Date(5),new Ubicacion(),5,10,Deporte.FUTBOL);
+        partido.agregarObservador(usuario1);
+        partido.agregarObservador(usuario2);
+
+        // Como cambio de estrategia de notificacion es lo que me queda la duda ?
+        //partido.cambiarEstrategiaNotificacion(new NotificacionSMS());
+        partido.cambiarEstado(new PartidoArmado());
+*/
+
+        
 
     }
 } 
