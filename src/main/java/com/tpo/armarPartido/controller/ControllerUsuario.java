@@ -1,14 +1,14 @@
 package com.tpo.armarPartido.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import com.tpo.armarPartido.enums.Deporte;
 import com.tpo.armarPartido.enums.MedioNotificacion;
 import com.tpo.armarPartido.enums.Nivel;
 import com.tpo.armarPartido.model.Ubicacion;
 import com.tpo.armarPartido.model.Usuario;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class ControllerUsuario {
     private static ControllerUsuario instancia;
@@ -19,17 +19,20 @@ public class ControllerUsuario {
     }
 
     public static ControllerUsuario getInstancia() {
-    	System.out.println("Inicio Controlador de Usuarios ");
+        System.out.println("Inicio Controlador de Usuarios");
         if (instancia == null) {
             instancia = new ControllerUsuario();
         }
         return instancia;
     }
 
-    public void crearUsuario(String nombre, String correo, String contrasena, List<Deporte> deportesFavoritos, List<Nivel> nivelesDeportes, MedioNotificacion medioNotificacion, Ubicacion ubicacion) {
-    	Usuario nuevo = new Usuario(nombre, correo, contrasena, deportesFavoritos, nivelesDeportes, medioNotificacion, ubicacion);
+    public void crearUsuario(String nombre, String correo, String contrasena,
+                             Map<Deporte, Nivel> nivelesPorDeporte,
+                             MedioNotificacion medioNotificacion, Ubicacion ubicacion) {
+
+        Usuario nuevo = new Usuario(nombre, correo, contrasena, nivelesPorDeporte, medioNotificacion, ubicacion);
         usuarios.add(nuevo);
-        System.out.println(" + Se creo el usuario:  " + nuevo.getNombre());
+        System.out.println(" + Se creó el usuario: " + nuevo.getNombre());
     }
 
     public void eliminarUsuario(String correo) {
@@ -48,7 +51,7 @@ public class ControllerUsuario {
     public List<Usuario> getUsuarios() {
         return new ArrayList<>(usuarios);
     }
-    
+
     public Usuario getUsuarioPorNombre(String nombre) {
         for (Usuario usuario : usuarios) {
             if (usuario.getNombre().equalsIgnoreCase(nombre)) {
@@ -57,7 +60,4 @@ public class ControllerUsuario {
         }
         return null;
     }
-
-
 }
-

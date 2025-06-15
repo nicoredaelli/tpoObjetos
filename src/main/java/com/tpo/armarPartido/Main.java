@@ -1,9 +1,6 @@
 package com.tpo.armarPartido;
 
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 import com.tpo.armarPartido.controller.ControllerPartido;
 import com.tpo.armarPartido.controller.ControllerUsuario;
@@ -27,14 +24,30 @@ public class Main {
     	listaDeportesUsar.add(Deporte.BASQUET);
     	List<Nivel> listaNivelUsar = new ArrayList<>();
     	listaNivelUsar.add(Nivel.AVANZADO);
-    	
-    	userController.crearUsuario("Juan Perez", "juan@example.com", "1234", listaDeportesUsar, listaNivelUsar
-    			, MedioNotificacion.EMAIL, new Ubicacion(1, 1));
-    	
-        userController.crearUsuario("Ana Gomez", "ana@example.com", "abcd", listaDeportesUsar, listaNivelUsar,
+
+        // Usuarios con sus niveles por deporte --> CAMBIO DE LISTAS POR DICCIONARIO
+        Map<Deporte, Nivel> nivelesJuan = new HashMap<>();
+        nivelesJuan.put(Deporte.FUTBOL, Nivel.AVANZADO);
+        nivelesJuan.put(Deporte.BASQUET, Nivel.INTERMEDIO);
+
+        Map<Deporte, Nivel> nivelesAna = new HashMap<>();
+        nivelesAna.put(Deporte.VOLEY, Nivel.INTERMEDIO);
+        nivelesAna.put(Deporte.FUTBOL, Nivel.AVANZADO);
+
+        Map<Deporte, Nivel> nivelesLuis = new HashMap<>();
+        nivelesLuis.put(Deporte.FUTBOL, Nivel.AVANZADO);
+        nivelesLuis.put(Deporte.BASQUET, Nivel.AVANZADO);
+
+
+
+
+        userController.crearUsuario("Juan Perez", "juan@example.com", "1234", nivelesJuan,
+                MedioNotificacion.EMAIL, new Ubicacion(1, 1));
+
+        userController.crearUsuario("Ana Gomez", "ana@example.com", "abcd", nivelesAna,
                 MedioNotificacion.SMS, new Ubicacion(2, 3));
 
-        userController.crearUsuario("Luis Martinez", "luis@example.com", "xyz789", listaDeportesUsar, listaNivelUsar,
+        userController.crearUsuario("Luis Martinez", "luis@example.com", "xyz789", nivelesLuis,
                 MedioNotificacion.SMS, new Ubicacion(5, 8));
         
         

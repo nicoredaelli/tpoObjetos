@@ -134,7 +134,13 @@ public class Partido {
     public EstadoPartido getEstado() {
     	return this.estado;
     }
-    
+    public EstrategiaEmparejamiento getEmparejamiento() {
+        return this.emparejamiento;
+    }
+
+    public void setEmparejamiento(EstrategiaEmparejamiento emparejamiento) {
+        this.emparejamiento = emparejamiento;
+    }
     public boolean esParticipante(Usuario jugador) {
     	boolean res = false;
     	for(Usuario usuario: jugadoresParticipan) {
@@ -145,5 +151,13 @@ public class Partido {
     	}
     	return res;
     }
-    
+
+
+    public void setJugadoresParticipan(List<Usuario> jugadoresParticipan) {
+        this.jugadoresParticipan = jugadoresParticipan;
+    }
+
+    public void setEstado(EstadoPartido estado) {
+        this.estado = estado;
+    }
 }

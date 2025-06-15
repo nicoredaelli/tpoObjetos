@@ -96,12 +96,35 @@ public class ControllerPartido {
     	return partidos.get(id);
     }
     
-    // Manejo de estados:
-    
     public void armarPartido(int id) {
-    	Partido partido = partidos.get(id);
-    	EstadoPartido estadoActual = partido.getEstado();
-    	estadoActual.armar(partido);
+        Partido partido = partidos.get(id);
+
+        if (partido.getEmparejamiento() != null) {
+            System.out.println("🔄 Ejecutando Estrategia de emparejamiento...");
+
+        // Simular todos los usuarios del sistema como candidatos
+        List<Usuario> posiblesJugadores = ControllerUsuario.getInstancia().getUsuarios();
+
+        // Aplicar la estrategia de emparejamiento del partido
+        List<Usuario> seleccionados = partido.getEmparejamiento().emparejar(partido, posiblesJugadores);
+
+        // Actualizar la lista de jugadores
+        partido.setJugadoresParticipan(seleccionados);
+
+        // Luego cambio de estado (por ejemplo a PartidoArmado si ya hay suficientes jugadores)
+        if (seleccionados.size() >= partido.getCantidadJugadores()) {
+            partido.setEstado(new PartidoArmado());
+            System.out.println("✅ Partido armado con éxito con estrategia: " + partido.getEmparejamiento().getNombreEstrategia() + "\n");
+        } else {
+            System.out.println("⚠️ No se pudo armar el partido. Jugadores seleccionados: " + seleccionados.size());
+        }
+
+    }
+        else{
+            System.out.println("\n⚠️ No se selecciono ningun autocompletado");
+            EstadoPartido estadoActual = partido.getEstado();
+            estadoActual.armar(partido);
+        }
     }
     
     public void confirmarPartido(int id, Usuario jugador) {
