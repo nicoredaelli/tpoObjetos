@@ -10,6 +10,7 @@ import com.tpo.armarPartido.enums.Nivel;
 import com.tpo.armarPartido.model.Ubicacion;
 import com.tpo.armarPartido.model.Usuario;
 import com.tpo.armarPartido.service.EmparejamientoPorNivel;
+import com.tpo.armarPartido.service.EmparejamientoPorUbicacion;
 
 public class Main {
     public static void main(String[] args) {
@@ -62,8 +63,8 @@ public class Main {
         Usuario Ana = userController.getUsuarioPorNombre("Ana Gomez");
         Usuario Juan = userController.getUsuarioPorNombre("Juan Perez");
         
-        partidoController.crearPartido(Deporte.FUTBOL, 2, 10, new Ubicacion(1, 1), horario, new EmparejamientoPorNivel(), Luis, Nivel.AVANZADO );
-        partidoController.crearPartido(Deporte.VOLEY, 2, 10, new Ubicacion(1, 1), horario, new EmparejamientoPorNivel(), Ana, Nivel.INTERMEDIO );
+        partidoController.crearPartido(Deporte.FUTBOL, 4, 10, new Ubicacion(1, 1), horario, new EmparejamientoPorUbicacion(), Luis, Nivel.AVANZADO );
+        partidoController.crearPartido(Deporte.VOLEY, 3, 10, new Ubicacion(1, 1), horario, new EmparejamientoPorNivel(), Ana, Nivel.INTERMEDIO );
         
         partidoController.buscarPartidosPorNivel(Nivel.AVANZADO);
         

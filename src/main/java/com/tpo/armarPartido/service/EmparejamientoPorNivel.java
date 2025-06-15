@@ -24,10 +24,15 @@ public class EmparejamientoPorNivel implements EstrategiaEmparejamiento {
 
             if (nivelJugador != null && nivelJugador == nivelRequerido) {
                 jugadoresSeleccionados.add(jugador);
+                System.out.println("Emparejando Jugadores por Nivel " + jugador.getNombre() + "agregado.");
 
                 if (jugadoresSeleccionados.size() >= partido.getCantidadJugadores()) {
                     break;
                 }
+            }
+            else{
+                System.out.println("Emparejando Jugadores por Nivel" + jugador.getNombre() + "no tiene el nivel suficiente.");
+
             }
         }
 

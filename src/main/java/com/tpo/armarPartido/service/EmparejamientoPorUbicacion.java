@@ -1,38 +1,46 @@
-/*
 package com.tpo.armarPartido.service;
 
 
 import com.tpo.armarPartido.model.Partido;
 import com.tpo.armarPartido.model.Ubicacion;
 import com.tpo.armarPartido.model.Usuario;
-import com.tpo.armarPartido.service.EstrategiaEmparejamiento;
 
 import org.springframework.stereotype.Component;
 
-import java.util.Comparator;
+import java.util.ArrayList;
+
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Component
 public class EmparejamientoPorUbicacion implements EstrategiaEmparejamiento {
 
-    private static final double RADIO_MAXIMO_KM = 15.0;
-    private static final int TIERRA_RADIO_KM = 6378;
+    private final int DISTANCIA_MAXIMA = 10; // Radio máximo de distancia
 
     @Override
     public List<Usuario> emparejar(Partido partido, List<Usuario> jugadores) {
         Ubicacion ubicacionPartido = partido.getUbicacion();
-        return jugadores.stream()
-                .filter(jugador -> {
-                    Ubicacion ubicacionJugador = null;
-                    if (ubicacionJugador == null) return false;;
-                    double distancia = calcularDistancia(ubicacionPartido, ubicacionJugador);
-                    return distancia <= RADIO_MAXIMO_KM;
-                })
-                .sorted(Comparator.comparingDouble(jugador ->
-                        calcularDistancia(ubicacionPartido, jugador.getUbicacion())))
-                .limit(partido.getCantidadJugadores())
-                .collect(Collectors.toList());
+        List<Usuario> jugadoresSeleccionados = new ArrayList<>();
+        for (Usuario jugador : jugadores) {
+            if (jugadoresSeleccionados.contains(jugador)) {
+                continue; // Saltar si ya está seleccionado
+            }
+            double distancia = calcularDistancia(ubicacionPartido, jugador.getUbicacion());
+
+            if (distancia <= DISTANCIA_MAXIMA) {
+                jugadoresSeleccionados.add(jugador);
+                System.out.println("Emparejando Jugadores por Ubicacion " + jugador.getNombre() + "cerca, agregado.");
+
+                if (jugadoresSeleccionados.size() >= partido.getCantidadJugadores()) {
+                    break;
+                }
+            }
+            else{
+                System.out.println("Emparejando Jugadores por Ubicacion " + jugador.getNombre() + "Muy Lejos");
+            }
+        }
+
+        return jugadoresSeleccionados;
     }
 
     @Override
@@ -40,26 +48,10 @@ public class EmparejamientoPorUbicacion implements EstrategiaEmparejamiento {
         return "Por Ubicación Cercana";
     }
 
-    private double calcularDistancia(Ubicacion origen, Ubicacion destino) {
-        // Fórmula de Haversine para calcular distancias reales en base a la curvatura de la tierra
-
-        // Convertir coordenadas de grados a radianes
-        double lat1Rad = Math.toRadians(origen.getLatitud());
-        double lat2Rad = Math.toRadians(destino.getLatitud());
-
-        // Calcular las diferencias entre coordenadas en radianes
-        double deltaLatRad = Math.toRadians(destino.getLatitud() - origen.getLatitud());
-        double deltaLonRad = Math.toRadians(destino.getLongitud() - origen.getLongitud());
-
-        // Aplicar la fórmula de Haversine
-        double a = Math.sin(deltaLatRad / 2) * Math.sin(deltaLatRad / 2) +
-                Math.cos(lat1Rad) * Math.cos(lat2Rad) *
-                        Math.sin(deltaLonRad / 2) * Math.sin(deltaLonRad / 2);
-
-        // Calcular el ángulo central entre los dos puntos
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-        // Multiplicar por el radio de la Tierra para obtener la distancia en kilómetros
-        return TIERRA_RADIO_KM * c;
+    private double calcularDistancia(Ubicacion ubi1, Ubicacion ubi2) {
+        double x = ubi1.getLatitud() - ubi2.getLatitud();
+        double y = ubi1.getLongitud() - ubi2.getLongitud();
+        return Math.sqrt(x * x + y * y); // Pitagoras para obtener distancia recta entre dos puntos. Distancia = √2 de (Delta X)2  + (Delta Y)2
     }
-}*/
+}
+

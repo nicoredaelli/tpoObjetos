@@ -116,7 +116,7 @@ public class ControllerPartido {
             partido.setEstado(new PartidoArmado());
             System.out.println("✅ Partido armado con éxito con estrategia: " + partido.getEmparejamiento().getNombreEstrategia() + "\n");
         } else {
-            System.out.println("⚠️ No se pudo armar el partido. Jugadores seleccionados: " + seleccionados.size());
+            System.out.println("⚠️ No se pudo armar el partido. Jugadores seleccionados: " + seleccionados.size() + " --> falta de Jugadores Online");
         }
 
     }
