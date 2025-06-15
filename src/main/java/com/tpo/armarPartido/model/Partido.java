@@ -4,10 +4,7 @@ import com.tpo.armarPartido.dtos.UsuarioDTO;
 import com.tpo.armarPartido.enums.Deporte;
 import com.tpo.armarPartido.enums.Nivel;
 import com.tpo.armarPartido.service.EstrategiaEmparejamiento;
-import com.tpo.armarPartido.service.estados.Confirmacion;
-import com.tpo.armarPartido.service.estados.EstadoPartido;
-import com.tpo.armarPartido.service.estados.Finalizado;
-import com.tpo.armarPartido.service.estados.PartidoArmado;
+import com.tpo.armarPartido.service.estados.*;
 import com.tpo.armarPartido.service.iObserver;
 import lombok.*;
 
@@ -28,15 +25,33 @@ public class Partido {
     private Date horario;
     private EstadoPartido estado;
     private EstrategiaEmparejamiento emparejamiento;
-    private List<UsuarioDTO> jugadoresParticipan;
+    private List<Usuario> jugadoresParticipan;
     private Nivel nivel;
     private List<iObserver> observadores;
 
+    
 
-    public void cambiarEstado(EstadoPartido nuevo) {
+
+
+	public Partido(Deporte deporte, int cantidadJugadores, int duracion, Ubicacion ubicacion, Date horario,
+			EstadoPartido estado, EstrategiaEmparejamiento emparejamiento, List<Usuario> jugadoresParticipan,
+			Nivel nivel, List<iObserver> observadores) {
+		this.deporte = deporte;
+		this.cantidadJugadores = cantidadJugadores;
+		this.duracion = duracion;
+		this.ubicacion = ubicacion;
+		this.horario = horario;
+		this.estado = estado;
+		this.emparejamiento = emparejamiento;
+		this.jugadoresParticipan = jugadoresParticipan;
+		this.nivel = nivel;
+		this.observadores = observadores;
+	}
+
+	public void cambiarEstado(EstadoPartido nuevo) {
         EstadoPartido estadoAnterior = this.estado;
         this.estado = nuevo;
-        notificarObservadores();
+        // notificarObservadores();
         // Chequear esto con Ilan - Explicacion de flujo
     }
 
@@ -63,14 +78,14 @@ public class Partido {
         for (iObserver o : observadores) {
             try {
                 // Chequear esto con Ilan - Explicacion de flujo
-                o.update(new Notificacion(estado));
+                // o.update(new Notificacion(estado));
             } catch (Exception e) {
                 System.err.printf("Error al notificar observador: %s%n", e.getMessage());
             }
         }
     }
 
-    public void agregarJugador(UsuarioDTO jugador) {
+    public void agregarJugador(Usuario jugador) {
 
         if (this.cantidadJugadores >= this.jugadoresParticipan.size()) {
             jugadoresParticipan.add(jugador);
@@ -88,6 +103,34 @@ public class Partido {
         }
 
     }
+
+	public int getCantidadJugadores() {
+		return this.cantidadJugadores;
+	}
+
+	public Date getHorario() {
+		return this.horario;
+	}
+
+	public int getDuracion() {
+		return this.duracion;
+	}
+
+	public List<Usuario> getJugadoresParticipan() {
+		return this.jugadoresParticipan;
+	}
+
+	public Nivel getNivel() {
+		return this.nivel;
+	}
+
+	public Ubicacion getUbicacion() {
+		return this.ubicacion;
+	}
+
+	public Object getDeporte() {
+		return this.deporte;
+	}
 
 }
 

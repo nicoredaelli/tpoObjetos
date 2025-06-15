@@ -2,13 +2,14 @@ package com.tpo.armarPartido.service;
 
 import com.tpo.armarPartido.dtos.UsuarioDTO;
 import com.tpo.armarPartido.model.Partido;
+import com.tpo.armarPartido.model.Usuario;
 
 import java.util.List;
 
 public interface EstrategiaEmparejamiento {
 
 
-    List<UsuarioDTO> emparejar(Partido partido, List<UsuarioDTO> jugadores);
+    List<Usuario> emparejar(Partido partido, List<Usuario> jugadoresParticipan);
 
     String getNombreEstrategia();
 

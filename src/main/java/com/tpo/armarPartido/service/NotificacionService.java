@@ -1,9 +1,8 @@
 package com.tpo.armarPartido.service;
 
-import com.tpo.armarPartido.enums.EventoPartido;
+
 import com.tpo.armarPartido.model.Partido;
 import com.tpo.armarPartido.model.Usuario;
-
 import java.util.List;
 
 /**
@@ -35,6 +34,16 @@ public class NotificacionService implements iObserver{
         partido.agregarObservador(this);
     }
 
+	@Override
+	public void update(com.tpo.armarPartido.service.EventoPartido evento, Partido partido) {
+		// TODO Auto-generated method stub
+		
+	}
+
+    
+    
+    
+/*
     @Override
     public void update(EventoPartido evento, Partido partido){
         switch (evento) {
@@ -54,5 +63,7 @@ public class NotificacionService implements iObserver{
             default -> {
             }
         }
-    }
+    }*/
+    
+
 }

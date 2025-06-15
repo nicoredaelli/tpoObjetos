@@ -13,4 +13,10 @@ public class Notificacion {
         this.mensaje = mensaje;
     }
 
+	public String getMensaje() {
+		return this.mensaje;
+	}
+
+
+
 }

@@ -1,48 +1,43 @@
 package com.tpo.armarPartido;
 
-import com.tpo.armarPartido.enums.Deporte;
-import com.tpo.armarPartido.enums.Nivel;
-import com.tpo.armarPartido.enums.MedioNotificacion;
-import com.tpo.armarPartido.dtos.UsuarioDTO;
-import com.tpo.armarPartido.service.ControllerUsuario;
-
+import java.util.ArrayList;
 import java.util.List;
+
+import com.tpo.armarPartido.controller.ControllerPartido;
+import com.tpo.armarPartido.controller.ControllerUsuario;
+import com.tpo.armarPartido.enums.Deporte;
+import com.tpo.armarPartido.enums.MedioNotificacion;
+import com.tpo.armarPartido.enums.Nivel;
+import com.tpo.armarPartido.model.Ubicacion;
 
 public class Main {
     public static void main(String[] args) {
-        ControllerUsuario controller = new ControllerUsuario();
+    	
+    	System.out.println("Inicio ArmarPartido");
+    
+    	// Creo controlador y usuarios. 
+    	ControllerUsuario userController = ControllerUsuario.getInstancia();
+    	ControllerPartido partidoController = ControllerPartido.getInstancia();
+    	
+    	List<Deporte> listaDeportesUsar = new ArrayList();
+    	listaDeportesUsar.add(Deporte.BASQUET);
+    	List<Nivel> listaNivelUsar = new ArrayList<>();
+    	listaNivelUsar.add(Nivel.AVANZADO);
+    	
+    	userController.crearUsuario("Juan Perez", "juan@example.com", "1234", listaDeportesUsar, listaNivelUsar
+    			, MedioNotificacion.EMAIL, new Ubicacion(1, 1));
+    	
+        userController.crearUsuario("Ana Gómez", "ana@example.com", "abcd", listaDeportesUsar, listaNivelUsar,
+                MedioNotificacion.SMS, new Ubicacion(2, 3));
 
-        // Crear un usuario válido
-        UsuarioDTO dto = new UsuarioDTO(
-            "Juan Pérez",
-            "juan@example.com",
-            List.of(Deporte.FUTBOL),
-            List.of(Nivel.INTERMEDIO),
-            MedioNotificacion.EMAIL
-        );
-        boolean creado = controller.crearUsuario(dto, "miContrasena123");
-        System.out.println("Usuario creado: " + creado);
+        userController.crearUsuario("Luis Martínez", "luis@example.com", "xyz789", listaDeportesUsar, listaNivelUsar,
+                MedioNotificacion.SMS, new Ubicacion(5, 8));
+        
+        System.err.println(userController.getUsuarios()); 
+        
+        partidoController.crearPartido(Deporte.FUTBOL, 2, 10, new Ubicacion(1, 1), null, null, null, null, null, null);
+        
+        
 
-        // Intentar crear el mismo usuario (debería fallar)
-        boolean creado2 = controller.crearUsuario(dto, "otraClave");
-        System.out.println("Usuario creado (repetido): " + creado2);
-
-        // Modificar usuario
-        UsuarioDTO dtoMod = new UsuarioDTO(
-            "Juan P.",
-            "juan@example.com",
-            List.of(Deporte.FUTBOL, Deporte.BASQUET),
-            List.of(Nivel.AVANZADO),
-            MedioNotificacion.SMS
-        );
-        boolean modificado = controller.modificarUsuario(dtoMod);
-        System.out.println("Usuario modificado: " + modificado);
-
-        // Eliminar usuario
-        boolean eliminado = controller.eliminarUsuario(dto);
-        System.out.println("Usuario eliminado: " + eliminado);
-
-        // Listar usuarios (debería estar vacío)
-        System.out.println("Usuarios actuales: " + controller.listarUsuarios().size());
     }
 } 
