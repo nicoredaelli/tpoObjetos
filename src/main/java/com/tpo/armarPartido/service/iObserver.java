@@ -7,5 +7,5 @@ import com.tpo.armarPartido.model.Partido;
  */
 
 public interface iObserver {
-    void update(EventoPartido evento, Partido partido);
+    void update(Notificacion notificacion);
 }

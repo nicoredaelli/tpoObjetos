@@ -54,4 +54,10 @@ public class EnJuego implements EstadoPartido {
         }
     }
 
+    @Override
+    public String getMessage() {
+        return mensaje;
+
+    }
+
 }

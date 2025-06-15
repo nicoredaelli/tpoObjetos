@@ -74,7 +74,7 @@ public class Partido {
         observadores.remove(o);
     }
 
-    public void notificarObservadores(String estado) {
+    public void notificarObservadores(EstadoPartido estado) {
         for (iObserver o : observadores) {
             try {
                 // Chequear esto con Ilan - Explicacion de flujo

@@ -42,7 +42,12 @@ public class PartidoArmado implements EstadoPartido {
         // No aplica.
     }
 
-    public String getMensaje() {
-        return String.format(mensaje, confirmaciones);
+    @Override
+    public String getMessage() {
+        return mensaje;
     }
+
+/*    public String getMensaje() {
+        return String.format(mensaje, confirmaciones);
+    }*/
 }
