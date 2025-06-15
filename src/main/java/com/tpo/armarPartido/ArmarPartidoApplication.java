@@ -8,6 +8,7 @@ public class ArmarPartidoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ArmarPartidoApplication.class, args);
+
 	}
 
 }

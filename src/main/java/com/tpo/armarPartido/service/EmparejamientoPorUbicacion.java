@@ -1,10 +1,12 @@
+/*
 package com.tpo.armarPartido.service;
 
-import com.tpo.armarPartido.dtos.UsuarioDTO;
+
 import com.tpo.armarPartido.model.Partido;
 import com.tpo.armarPartido.model.Ubicacion;
+import com.tpo.armarPartido.model.Usuario;
 import com.tpo.armarPartido.service.EstrategiaEmparejamiento;
-import com.tpo.armarPartido.dtos.UsuarioDTO;
+
 import org.springframework.stereotype.Component;
 
 import java.util.Comparator;
@@ -18,15 +20,12 @@ public class EmparejamientoPorUbicacion implements EstrategiaEmparejamiento {
     private static final int TIERRA_RADIO_KM = 6378;
 
     @Override
-    public List<UsuarioDTO> emparejar(Partido partido, List<UsuarioDTO> jugadores) {
+    public List<Usuario> emparejar(Partido partido, List<Usuario> jugadores) {
         Ubicacion ubicacionPartido = partido.getUbicacion();
-
-
         return jugadores.stream()
                 .filter(jugador -> {
                     Ubicacion ubicacionJugador = null;
                     if (ubicacionJugador == null) return false;;
-
                     double distancia = calcularDistancia(ubicacionPartido, ubicacionJugador);
                     return distancia <= RADIO_MAXIMO_KM;
                 })
@@ -63,4 +62,4 @@ public class EmparejamientoPorUbicacion implements EstrategiaEmparejamiento {
         // Multiplicar por el radio de la Tierra para obtener la distancia en kilómetros
         return TIERRA_RADIO_KM * c;
     }
-}
+}*/

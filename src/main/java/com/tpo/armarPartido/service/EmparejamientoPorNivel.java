@@ -1,10 +1,11 @@
 package com.tpo.armarPartido.service;
 
-import com.tpo.armarPartido.dtos.UsuarioDTO;
+
 import com.tpo.armarPartido.enums.Nivel;
 import com.tpo.armarPartido.model.Partido;
+import com.tpo.armarPartido.model.Usuario;
 import com.tpo.armarPartido.service.EstrategiaEmparejamiento;
-import com.tpo.armarPartido.dtos.UsuarioDTO;
+
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 public class EmparejamientoPorNivel implements EstrategiaEmparejamiento {
 
     @Override
-    public List<UsuarioDTO> emparejar (Partido partido, List<UsuarioDTO> jugadores) {
+    public List<Usuario> emparejar (Partido partido, List<Usuario> jugadores) {
         Nivel nivelRequerido = partido.getNivel();
 
         return jugadores.stream()

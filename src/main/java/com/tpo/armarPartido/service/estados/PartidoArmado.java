@@ -1,6 +1,5 @@
 package com.tpo.armarPartido.service.estados;
 
-import com.tpo.armarPartido.dtos.UsuarioDTO;
 import com.tpo.armarPartido.model.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
