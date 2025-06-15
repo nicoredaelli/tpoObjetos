@@ -19,17 +19,6 @@ public class Usuario {
     private MedioNotificacion medioNotificacion;
     private Ubicacion ubicacion;
     
-    public Usuario(String nombre, String correo, String contrasena, List<Deporte> deportesFavoritos,
-			List<Nivel> nivelesDeportes, MedioNotificacion medioNotificacion, Ubicacion ubicacion) {
-		this.nombre = nombre;
-		this.correo = correo;
-		this.contrasena = contrasena;
-		this.deportesFavoritos = deportesFavoritos;
-		this.nivelesDeportes = nivelesDeportes;
-		this.medioNotificacion = medioNotificacion;
-		this.ubicacion = ubicacion;
-	}
-    
 	@Override
 	public String toString() {
 		return "Usuario [nombre=" + nombre + ", correo=" + correo + "]";
@@ -71,7 +60,6 @@ public class Usuario {
         this.ubicacion = ubicacion;
     }
 
-    @Override
     public void actualizar(Notificacion notificacion) {
         // IMPLEMENTACIÓN BÁSICA
         // Simplemente mostrar la notificación en consola
