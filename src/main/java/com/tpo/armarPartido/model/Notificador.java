@@ -17,6 +17,11 @@ public class Notificador implements iObserver {
     private EstrategiaNotificacion estrategiaDeNotificacion;
     private AdapterNotificacionMail adapterNotificacionMail;
 
+    public Notificador(AdapterNotificacionMail adapterNotificacionMail) {
+        this.adapterNotificacionMail = adapterNotificacionMail;
+
+    }
+
     @Override
     public void actualizar(Partido partido) {
         // Este método se ejecuta cuando el Partido notifica un cambio
