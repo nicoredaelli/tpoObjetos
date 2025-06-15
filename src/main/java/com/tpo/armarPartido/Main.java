@@ -37,7 +37,6 @@ public class Main {
         userController.crearUsuario("Luis Martinez", "luis@example.com", "xyz789", listaDeportesUsar, listaNivelUsar,
                 MedioNotificacion.SMS, new Ubicacion(5, 8));
         
-        System.err.println(userController.getUsuarios()); 
         
         // Previo a armar un partido necesito un usuario que lo cree y un horario del tipo Date. 
         Calendar calendar = Calendar.getInstance();
@@ -46,18 +45,28 @@ public class Main {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
         Date horario = (Date) calendar.getTime();
-        Usuario usurioCreaPartido = userController.getUsuarioPorNombre("Luis Martinez");
+        Usuario Luis = userController.getUsuarioPorNombre("Luis Martinez");
+        Usuario Ana = userController.getUsuarioPorNombre("Ana Gomez");
+        Usuario Juan = userController.getUsuarioPorNombre("Juan Perez");
         
-        partidoController.crearPartido(Deporte.FUTBOL, 2, 10, new Ubicacion(1, 1), horario, new EmparejamientoPorNivel(), usurioCreaPartido, Nivel.AVANZADO );
+        partidoController.crearPartido(Deporte.FUTBOL, 2, 10, new Ubicacion(1, 1), horario, new EmparejamientoPorNivel(), Luis, Nivel.AVANZADO );
+        partidoController.crearPartido(Deporte.VOLEY, 2, 10, new Ubicacion(1, 1), horario, new EmparejamientoPorNivel(), Ana, Nivel.INTERMEDIO );
         
         partidoController.buscarPartidosPorNivel(Nivel.AVANZADO);
         
-        Usuario usuarioNuevoDelPartido = userController.getUsuarioPorNombre("Juan Perez");
         int idPartidoElegido = 0;
-        partidoController.agregarJugadorAPartido(idPartidoElegido, usuarioNuevoDelPartido);
+        partidoController.agregarJugadorAPartido(idPartidoElegido, Juan);
         partidoController.armarPartido(idPartidoElegido);
         
         System.out.println(partidoController.getPartidoID(idPartidoElegido));
+        
+        partidoController.confirmarPartido(0, Juan);
+        partidoController.confirmarPartido(0, Ana);
+        partidoController.confirmarPartido(0, Luis);
+        
+        
+        
+        
 
 
     }

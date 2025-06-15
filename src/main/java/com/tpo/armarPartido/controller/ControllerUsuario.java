@@ -29,7 +29,7 @@ public class ControllerUsuario {
     public void crearUsuario(String nombre, String correo, String contrasena, List<Deporte> deportesFavoritos, List<Nivel> nivelesDeportes, MedioNotificacion medioNotificacion, Ubicacion ubicacion) {
     	Usuario nuevo = new Usuario(nombre, correo, contrasena, deportesFavoritos, nivelesDeportes, medioNotificacion, ubicacion);
         usuarios.add(nuevo);
-        System.err.println(nuevo.getNombre());
+        System.out.println(" + Se creo el usuario:  " + nuevo.getNombre());
     }
 
     public void eliminarUsuario(String correo) {

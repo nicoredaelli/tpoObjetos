@@ -54,6 +54,7 @@ public class Partido {
 	public void cambiarEstado(EstadoPartido nuevo) {
         EstadoPartido estadoAnterior = this.estado;
         this.estado = nuevo;
+        System.out.println("++ Nuevo estado: " + this.getEstado());
         // Crear notificación con información del cambio
         notificarObservadores();
     }
@@ -132,6 +133,17 @@ public class Partido {
     
     public EstadoPartido getEstado() {
     	return this.estado;
+    }
+    
+    public boolean esParticipante(Usuario jugador) {
+    	boolean res = false;
+    	for(Usuario usuario: jugadoresParticipan) {
+    		if(usuario.equals(jugador)) {
+    			res = true;
+    			break;
+    		}
+    	}
+    	return res;
     }
     
 }

@@ -44,7 +44,7 @@ public class ControllerPartido {
     	// Creo Partido con lista de usuarios con el primer usuario como creador (owner) y la lista de observadores con un observador notificador. 
     	Partido nuevo = new Partido(deporte, cantidadJugadores, duracion, ubicacion, horario, estadoInicial, emparejamiento, listaJugadoresParticipan, nivel, observadores);
     	partidos.add(nuevo);
-    	System.out.println("Se creo un nuevo partido de " + nuevo.getDeporte());
+    	System.out.println(" + Se creo un nuevo partido de " + nuevo.getDeporte());
     }
     
     public void buscarPartidosPorNivel(Nivel nivel) {
@@ -100,5 +100,19 @@ public class ControllerPartido {
     	EstadoPartido estadoActual = partido.getEstado();
     	estadoActual.armar(partido);
     }
+    
+    public void confirmarPartido(int id, Usuario jugador) {
+    	Partido partido = partidos.get(id);
+    	EstadoPartido estadoActual = partido.getEstado();
+    	if(partido.esParticipante(jugador)) {
+	    	estadoActual.confirmar(partido);
+	    	estadoActual.getMessage();
+    	}
+    	else {
+    		System.err.println("El jugador que intenta confirmar no es parte del Partido");
+		}
+    	
+    }
+    
 
 }

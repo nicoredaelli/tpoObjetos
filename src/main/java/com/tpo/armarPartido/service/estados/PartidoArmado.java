@@ -33,6 +33,7 @@ public class PartidoArmado implements EstadoPartido {
         confirmaciones++;
         if (confirmaciones >= partido.getJugadoresParticipan().size()) {
             partido.cambiarEstado(new Confirmacion());
+            
         }
     }
 
