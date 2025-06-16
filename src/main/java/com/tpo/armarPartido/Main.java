@@ -38,8 +38,9 @@ public class Main {
         partidoController.confirmarPartido(0, Luis);
         partidoController.confirmarPartido(0, Juan);
         
+        partidoController.comenzarPartido(0, Luis);
         
-        
+        partidoController.finalizarPartido(0, Luis);
         
     }
 } 

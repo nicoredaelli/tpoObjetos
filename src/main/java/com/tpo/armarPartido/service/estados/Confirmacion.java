@@ -15,8 +15,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Confirmacion implements EstadoPartido {
-    @Override
-	public String toString() {
+    
+	@Override
+    public String toString() {
 		return "Confirmacion";
 	}
 
@@ -45,9 +46,9 @@ public class Confirmacion implements EstadoPartido {
         Date ahora = new Date();
         long horarioPartido = partido.getHorario().getTime();
         long ahoraMillis = ahora.getTime();
-        long diezMinutos = 600000;
+        long sesentaMinutos = 2 * 60 * 60 * 1000; // A la hora de probar ver el horario del partido 
 
-        if (ahoraMillis >= (horarioPartido - diezMinutos) && ahoraMillis <= (horarioPartido + diezMinutos)) {
+        if (ahoraMillis >= (horarioPartido - sesentaMinutos) && ahoraMillis <= (horarioPartido + sesentaMinutos)) {
             partido.cambiarEstado(new EnJuego());
             System.out.println("El partido ha comenzado.");
         } else {

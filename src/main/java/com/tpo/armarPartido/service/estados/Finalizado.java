@@ -12,7 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 public class Finalizado implements EstadoPartido {
 
-    private static final String mensaje = "El partido ya finalizo!";
+    private static final String mensaje = "El partido ya finalizo! \n -------------------------";
     private List<Comentario> comentarios;
 
     @Override

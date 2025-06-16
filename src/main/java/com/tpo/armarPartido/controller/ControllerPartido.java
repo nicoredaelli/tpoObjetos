@@ -96,6 +96,8 @@ public class ControllerPartido {
     	return partidos.get(id);
     }
     
+    // Metodos de estado
+    
     public void armarPartido(int id) {
         Partido partido = partidos.get(id);
         
@@ -130,5 +132,27 @@ public class ControllerPartido {
     	
     }
     
-
+    public void comenzarPartido(int id, Usuario jugador) {
+    	Partido partido = partidos.get(id);
+    	EstadoPartido estadoActual = partido.getEstado();
+    	if(partido.esCreador(jugador)) {
+    		estadoActual.comenzar(partido);
+    		estadoActual.getMessage(partido);
+    	}
+    	else {
+    		System.err.println("El " + jugador.getNombre()+ " que intenta comenzar no es creador del partido");
+		}
+    }
+    
+    public void finalizarPartido(int id, Usuario jugador) {
+    	Partido partido = partidos.get(id);
+    	EstadoPartido estadoActual = partido.getEstado();
+    	if(partido.esCreador(jugador)) {
+    		estadoActual.finalizar(partido);
+    		estadoActual.getMessage(partido);
+    	}
+    	else {
+    		System.err.println("El " + jugador.getNombre()+ " que intenta comenzar no es creador del partido");
+		}
+    }
 }

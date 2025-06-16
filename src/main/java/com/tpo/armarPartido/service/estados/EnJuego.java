@@ -18,7 +18,7 @@ public class EnJuego implements EstadoPartido {
 		return "EnJuego";
 	}
 
-	private static final String mensaje = "El partido ya comenzo!";
+	private static final String mensaje = "El partido ya comenzo! \n -------------------------";
 
     @Override
     public void cancelar(Partido partido) {

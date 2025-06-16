@@ -135,6 +135,7 @@ public class Partido {
     public EstadoPartido getEstado() {
     	return this.estado;
     }
+    
     public EstrategiaEmparejamiento getEmparejamiento() {
         return this.emparejamiento;
     }
@@ -142,6 +143,7 @@ public class Partido {
     public void setEmparejamiento(EstrategiaEmparejamiento emparejamiento) {
         this.emparejamiento = emparejamiento;
     }
+    
     public boolean esParticipante(Usuario jugador) {
     	boolean res = false;
     	for(Usuario usuario: jugadoresParticipan) {
@@ -153,7 +155,6 @@ public class Partido {
     	return res;
     }
 
-
     public void setJugadoresParticipan(List<Usuario> jugadoresParticipan) {
         this.jugadoresParticipan = jugadoresParticipan;
     }
@@ -162,5 +163,12 @@ public class Partido {
     	return partido.getJugadoresParticipan().get(0).toString();
     }
 
-
+    public boolean esCreador(Usuario jugador) {
+    	boolean res = false;
+    	int jugadorCreador = 0;
+    	if (this.jugadoresParticipan.get(jugadorCreador).equals(jugador)) {
+    		res = true;
+    	}
+    	return res;
+    }
 }
