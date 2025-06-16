@@ -38,10 +38,10 @@ public class GenerarUsuarios {
 	    nivelesCarla.put(Deporte.VOLEY, Nivel.PRINCIPIANTE);
 
 	    userController.crearUsuario("Juan Perez", "juan@example.com", "1234", nivelesJuan,
-	            MedioNotificacion.EMAIL, new Ubicacion(1, 1));
+	            MedioNotificacion.EMAIL, new Ubicacion(1, 3));
 
 	    userController.crearUsuario("Ana Gomez", "ana@example.com", "abcd", nivelesAna,
-	            MedioNotificacion.SMS, new Ubicacion(2, 3));
+	            MedioNotificacion.SMS, new Ubicacion(15, 16));
 
 	    userController.crearUsuario("Luis Martinez", "luis@example.com", "xyz789", nivelesLuis,
 	            MedioNotificacion.SMS, new Ubicacion(5, 8));

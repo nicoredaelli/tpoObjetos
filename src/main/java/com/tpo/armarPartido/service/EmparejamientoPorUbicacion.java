@@ -8,8 +8,9 @@ import com.tpo.armarPartido.model.Usuario;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Component
@@ -22,33 +23,47 @@ public class EmparejamientoPorUbicacion implements EstrategiaEmparejamiento {
 		return "Emparejamiento Por Ubicacion";
 	}
 
-	@Override
+    @Override
     public List<Usuario> emparejar(Partido partido, List<Usuario> jugadores) {
         Ubicacion ubicacionPartido = partido.getUbicacion();
         List<Usuario> jugadoresSeleccionados = new ArrayList<>();
+
+        // Siempre agrego al creador del partido
         int jugadorCreador = 0;
         jugadoresSeleccionados.add(partido.getJugadoresParticipan().get(jugadorCreador));
-        for (Usuario jugador : jugadores) {
-            if (jugadoresSeleccionados.contains(jugador)) {
-                continue; // Saltar si ya está seleccionado
-            }
+
+        // Filtrar y ordenar candidatos por cercanía
+        List<Usuario> candidatos = jugadores.stream()
+            .filter(j -> !jugadoresSeleccionados.contains(j))
+            .filter(j -> j.getUbicacion() != null)
+            .sorted(Comparator.comparingDouble(j -> calcularDistancia(ubicacionPartido, j.getUbicacion())))
+            .collect(Collectors.toList());
+
+        for (Usuario jugador : candidatos) {
             double distancia = calcularDistancia(ubicacionPartido, jugador.getUbicacion());
+
+            System.out.printf("📍 Distancia entre partido (%s) y jugador %s (%s): %.2f\n",
+                ubicacionPartido.toString(),
+                jugador.getNombre(),
+                jugador.getUbicacion().toString(),
+                distancia
+            );
+
+            if (jugadoresSeleccionados.size() >= partido.getCantidadJugadores()) {
+                break;
+            }
 
             if (distancia <= DISTANCIA_MAXIMA) {
                 jugadoresSeleccionados.add(jugador);
-                System.out.println("Emparejando Jugadores por Ubicacion " + jugador.getNombre() + " cerca, agregado.");
-
-                if (jugadoresSeleccionados.size() >= partido.getCantidadJugadores()) {
-                    break;
-                }
-            }
-            else{
-                System.out.println("Emparejando Jugadores por Ubicacion " + jugador.getNombre() + " Muy Lejos");
+                System.out.println("✅ Jugador agregado por cercanía: " + jugador.getNombre());
+            } else {
+                System.out.println("❌ Jugador muy lejos: " + jugador.getNombre());
             }
         }
 
         return jugadoresSeleccionados;
     }
+    
 
     @Override
     public String getNombreEstrategia() {
