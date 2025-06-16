@@ -16,7 +16,7 @@ public class EmparejamientoPorNivel implements EstrategiaEmparejamiento {
 	
     @Override
 	public String toString() {
-		return "Emparejamiento Por Nivel";
+		return "Emparejamiento Por Niveles disponibles: ";
 	}
 
 	@Override
