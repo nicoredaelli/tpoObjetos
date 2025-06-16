@@ -30,7 +30,7 @@ public class PartidoArmado implements EstadoPartido {
     @Override
     public void confirmar(Partido partido) {
         confirmaciones++;
-        System.out.println("Un usuario confirmo! Tenemos "+ confirmaciones + " en total. " );
+        System.out.println("Un usuario confirmo! Tenemos "+ confirmaciones + " confirmaciones en total. " );
         if (confirmaciones >= partido.getJugadoresParticipan().size()) {
             partido.cambiarEstado(new Confirmacion());            
         }

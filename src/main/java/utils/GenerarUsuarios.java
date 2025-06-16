@@ -13,8 +13,8 @@ public class GenerarUsuarios {
 	public static void generar(ControllerUsuario userController) {
 	    // Usuarios con sus niveles por deporte --> CAMBIO DE LISTAS POR DICCIONARIO
 	    Map<Deporte, Nivel> nivelesJuan = new HashMap<>();
-	    nivelesJuan.put(Deporte.FUTBOL, Nivel.AVANZADO);
-	    nivelesJuan.put(Deporte.BASQUET, Nivel.INTERMEDIO);
+	    nivelesJuan.put(Deporte.FUTBOL, Nivel.INTERMEDIO);
+	    nivelesJuan.put(Deporte.BASQUET, Nivel.PRINCIPIANTE);
 
 	    Map<Deporte, Nivel> nivelesAna = new HashMap<>();
 	    nivelesAna.put(Deporte.VOLEY, Nivel.INTERMEDIO);

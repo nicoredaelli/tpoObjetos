@@ -26,7 +26,7 @@ public class GenerarPartidos {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
         Date horarioPartidoLuis = (Date) calendar.getTime();
-        partidoController.crearPartido(Deporte.FUTBOL, 2, 10, new Ubicacion(1, 1), horarioPartidoLuis, new EmparejamientoPorUbicacion(), Luis, Nivel.AVANZADO );
+        partidoController.crearPartido(Deporte.FUTBOL, 2, 10, new Ubicacion(1, 1), horarioPartidoLuis, new EmparejamientoPorNivel(), Luis, Nivel.AVANZADO );
         //Partido 2
         Usuario Ana = userController.getUsuarioPorNombre("Ana Gomez");
         calendar.set(Calendar.HOUR_OF_DAY, 20); // 22 horas

@@ -45,11 +45,7 @@ public class NecesitamosJugadores implements EstadoPartido {
     public String getMessage(Partido partido) {
         return mensaje;
     }
-/*    @Override
-    public String getMensaje(Partido partido) {
-        int faltantes = partido.getCantidadJugadores() - partido.getJugadoresParticipan().size();
-        return String.format(mensaje, faltantes, partido.getCantidadJugadores());
-    }*/
+
 
 
 }
