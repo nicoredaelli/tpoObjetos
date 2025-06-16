@@ -15,6 +15,7 @@ public class PartidoDTO {
     private String estado;
     private Nivel nivel;
     private List<UsuarioDTO> jugadoresParticipan;
+    private String id;
 
     public PartidoDTO() {}
 
@@ -91,5 +92,13 @@ public class PartidoDTO {
 
     public void setJugadoresParticipan(List<UsuarioDTO> jugadoresParticipan) {
         this.jugadoresParticipan = jugadoresParticipan;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 } 
