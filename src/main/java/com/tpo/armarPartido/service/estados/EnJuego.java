@@ -3,22 +3,16 @@ package com.tpo.armarPartido.service.estados;
 import java.util.Date;
 
 import com.tpo.armarPartido.model.Partido;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 
-@Builder
-@Getter
-@Setter
-@AllArgsConstructor
 public class EnJuego implements EstadoPartido {
-    @Override
-	public String toString() {
-		return "EnJuego";
-	}
+    private static final String mensaje = "El partido ya comenzo! \n -------------------------";
 
-	private static final String mensaje = "El partido ya comenzo! \n -------------------------";
+    public EnJuego() {}
+
+    @Override
+    public String toString() {
+        return "EnJuego";
+    }
 
     @Override
     public void cancelar(Partido partido) {

@@ -5,18 +5,18 @@ import com.tpo.armarPartido.enums.Nivel;
 import com.tpo.armarPartido.service.EstrategiaEmparejamiento;
 import com.tpo.armarPartido.service.estados.*;
 import com.tpo.armarPartido.service.iObserver;
-import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Builder
-@Getter
-@Setter
-@NoArgsConstructor
+@Document(collection = "partidos")
 public class Partido {
 
+    @Id
+    private String id;
     private Deporte deporte;
     private int cantidadJugadores;
     private int duracion;
@@ -27,6 +27,8 @@ public class Partido {
     private List<Usuario> jugadoresParticipan;
     private Nivel nivel;
     private List<iObserver> observadores; // Lista de Notificadores
+
+    public Partido() {}
 
     public Partido(Deporte deporte, int cantidadJugadores, int duracion, Ubicacion ubicacion, Date horario,
                    EstadoPartido estado, EstrategiaEmparejamiento emparejamiento, List<Usuario> jugadoresParticipan,
@@ -170,5 +172,41 @@ public class Partido {
     		res = true;
     	}
     	return res;
+    }
+
+    public void setDeporte(Deporte deporte) {
+        this.deporte = deporte;
+    }
+
+    public void setCantidadJugadores(int cantidadJugadores) {
+        this.cantidadJugadores = cantidadJugadores;
+    }
+
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
+    }
+
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public void setHorario(Date horario) {
+        this.horario = horario;
+    }
+
+    public void setEstado(EstadoPartido estado) {
+        this.estado = estado;
+    }
+
+    public void setNivel(Nivel nivel) {
+        this.nivel = nivel;
+    }
+
+    public List<iObserver> getObservadores() {
+        return this.observadores;
+    }
+
+    public void setObservadores(List<iObserver> observadores) {
+        this.observadores = observadores;
     }
 }

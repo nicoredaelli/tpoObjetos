@@ -1,16 +1,21 @@
 package com.tpo.armarPartido.service.estados;
 
 import com.tpo.armarPartido.model.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-
 
 public class PartidoArmado implements EstadoPartido {
 
     private int confirmaciones = 0;
     private static final String mensaje = "Ya sos parte del partido %s! Nivel: %s Por favor envia tu confirmacion al partido del jugador:  %s \n -------------------------";
+
+    public PartidoArmado() {}
+
+    public int getConfirmaciones() {
+        return confirmaciones;
+    }
+
+    public void setConfirmaciones(int confirmaciones) {
+        this.confirmaciones = confirmaciones;
+    }
 
     @Override
     public void cancelar(Partido partido) {

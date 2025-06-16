@@ -1,0 +1,7 @@
+- Persistencia de datos en base de datos
+- DTO falta
+- Levantar server de JAVA para poder pegarlo por postman
+- Agregar controladores REST de Spring para exponer endpoints usando los DTOs (UsuarioDTO, PartidoDTO, ComentarioDTO)
+  - Crear endpoints para crear, modificar, eliminar y listar usuarios y partidos usando los DTOs
+  - Usar los métodos y mapeos ya implementados en los controladores
+- Prioridad actual: Implementar persistencia (guardar y recuperar datos de la base de datos)

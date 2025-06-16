@@ -1,12 +1,17 @@
 package com.tpo.armarPartido.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import com.tpo.armarPartido.enums.Deporte;
 import com.tpo.armarPartido.enums.MedioNotificacion;
 import com.tpo.armarPartido.enums.Nivel;
 
 import java.util.Map;
 
+@Document(collection = "usuarios")
 public class Usuario {
+	@Id
+	private String id;
 	private String nombre;
 	private String correo;
 	private String contrasena;
@@ -48,6 +53,14 @@ public class Usuario {
 
 	public Ubicacion getUbicacion() {
 		return ubicacion;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	@Override

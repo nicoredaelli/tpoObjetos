@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.tpo.armarPartido.dto.PartidoDTO;
+import com.tpo.armarPartido.dto.UsuarioDTO;
+import com.tpo.armarPartido.dto.DTOMapper;
 import com.tpo.armarPartido.enums.*;
 import com.tpo.armarPartido.model.*;
 import com.tpo.armarPartido.service.*;
@@ -29,8 +32,31 @@ public class ControllerPartido {
         return instancia;
     }
     
+    public void crearPartido(PartidoDTO partidoDTO, Usuario usuarioCreador, EstrategiaEmparejamiento emparejamiento) {
+    	EstadoPartido estadoInicial = new NecesitamosJugadores();
+    	List<Usuario> listaJugadoresParticipan = new ArrayList<>();
+    	listaJugadoresParticipan.add(usuarioCreador);
+        AdapterNotificacionMail adapter = new AdapterMail();
+        Notificador notificador = new Notificador(adapter);
+    	List<iObserver> observadores = new ArrayList<>();
+    	observadores.add(notificador);
+    	Partido nuevo = new Partido(
+    		partidoDTO.getDeporte(),
+    		partidoDTO.getCantidadJugadores(),
+    		partidoDTO.getDuracion(),
+    		partidoDTO.getUbicacion(),
+    		partidoDTO.getHorario(),
+    		estadoInicial,
+    		emparejamiento,
+    		listaJugadoresParticipan,
+    		partidoDTO.getNivel(),
+    		observadores
+    	);
+    	partidos.add(nuevo);
+    	System.out.println(" + Se creo un nuevo partido de " + nuevo.getDeporte());
+    }
+    
     public void crearPartido(Deporte deporte, int cantidadJugadores, int duracion, Ubicacion ubicacion, Date horario, EstrategiaEmparejamiento emparejamiento, Usuario usuarioCreador, Nivel nivel) {
-    	// Lo que necesito para crear cualquier Partido
     	EstadoPartido estadoInicial = new NecesitamosJugadores();
     	List<Usuario> listaJugadoresParticipan = new ArrayList<Usuario>();
     	listaJugadoresParticipan.add(usuarioCreador);
@@ -38,7 +64,6 @@ public class ControllerPartido {
         Notificador notificador = new Notificador(adapter);
     	List<iObserver> observadores = new ArrayList<iObserver>();
     	observadores.add(notificador);
-    	// Creo Partido con lista de usuarios con el primer usuario como creador (owner) y la lista de observadores con un observador notificador. 
     	Partido nuevo = new Partido(deporte, cantidadJugadores, duracion, ubicacion, horario, estadoInicial, emparejamiento, listaJugadoresParticipan, nivel, observadores);
     	partidos.add(nuevo);
     	System.out.println(" + Se creo un nuevo partido de " + nuevo.getDeporte());
@@ -180,5 +205,16 @@ public class ControllerPartido {
     	else {
     		System.err.println("El " + jugador.getNombre()+ " que intenta comenzar no es creador del partido");
 		}
+    }
+
+    public List<PartidoDTO> getPartidosDTO() {
+        return partidos.stream().map(DTOMapper::toPartidoDTO).collect(Collectors.toList());
+    }
+
+    public PartidoDTO getPartidoDTOPorID(int id) {
+        if (id >= 0 && id < partidos.size()) {
+            return DTOMapper.toPartidoDTO(partidos.get(id));
+        }
+        return null;
     }
 }
