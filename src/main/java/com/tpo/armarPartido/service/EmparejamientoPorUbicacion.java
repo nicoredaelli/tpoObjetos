@@ -41,17 +41,16 @@ public class EmparejamientoPorUbicacion implements EstrategiaEmparejamiento {
 
         for (Usuario jugador : candidatos) {
             double distancia = calcularDistancia(ubicacionPartido, jugador.getUbicacion());
-
-            System.out.printf("📍 Distancia entre partido (%s) y jugador %s (%s): %.2f\n",
+            if (jugadoresSeleccionados.size() >= partido.getCantidadJugadores()) {
+                break;
+            }
+            System.out.printf("Distancia entre partido (%s) y jugador %s (%s): %.2f\n",
                 ubicacionPartido.toString(),
                 jugador.getNombre(),
                 jugador.getUbicacion().toString(),
                 distancia
             );
 
-            if (jugadoresSeleccionados.size() >= partido.getCantidadJugadores()) {
-                break;
-            }
 
             if (distancia <= DISTANCIA_MAXIMA) {
                 jugadoresSeleccionados.add(jugador);
