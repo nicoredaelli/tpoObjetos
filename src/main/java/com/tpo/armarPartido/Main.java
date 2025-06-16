@@ -33,7 +33,7 @@ public class Main {
         // userController.agregarDeporteNivel("ana@example.com", Deporte.BASQUET, Nivel.PRINCIPIANTE);
         
         //Prueba de busqueda de partidos por ubicacion de parte de un Usuario. 
-//        Ubicacion ubicacionLuis = Luis.getUbicacion();
+//        Ubicacion ubicacionLuis = Ana.getUbicacion();
 //        int cantidadDePartidosMasCercanos = 2;
 //        partidoController.buscarPartidosPorUbicacion(ubicacionLuis, cantidadDePartidosMasCercanos);
         

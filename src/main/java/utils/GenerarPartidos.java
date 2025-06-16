@@ -21,7 +21,7 @@ public class GenerarPartidos {
 		
 		// Partido 1 - creado por Luis
 		Usuario Luis = userController.getUsuarioPorNombre("Luis Martinez");
-        calendar.set(Calendar.HOUR_OF_DAY, 22); // 22 horas
+        calendar.set(Calendar.HOUR_OF_DAY, 18); // 22 horas
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
