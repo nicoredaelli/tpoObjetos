@@ -68,7 +68,5 @@ public class Usuario {
 		return "Usuario [nombre=" + nombre + ", correo=" + correo + "]";
 	}
 
-	public void actualizar(Notificacion notificacion) {
-		System.out.println("📧 [" + nombre + "] Notificación recibida: " + notificacion.getMensaje());
-	}
+
 }
