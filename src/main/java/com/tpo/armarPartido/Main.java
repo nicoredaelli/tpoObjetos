@@ -4,6 +4,7 @@ import com.tpo.armarPartido.controller.ControllerPartido;
 import com.tpo.armarPartido.controller.ControllerUsuario;
 import com.tpo.armarPartido.enums.Deporte;
 import com.tpo.armarPartido.enums.Nivel;
+import com.tpo.armarPartido.model.Ubicacion;
 import com.tpo.armarPartido.model.Usuario;
 import utils.GenerarPartidos;
 import utils.GenerarUsuarios;
@@ -28,7 +29,14 @@ public class Main {
         Usuario Ana = userController.getUsuarioPorNombre("Ana Gomez");
         Usuario Juan = userController.getUsuarioPorNombre("Juan Perez");
         
-        userController.agregarDeporteNivel("ana@example.com", Deporte.BASQUET, Nivel.PRINCIPIANTE);
+        //Prueba para agregar deporte y nivel a un usuario.
+        // userController.agregarDeporteNivel("ana@example.com", Deporte.BASQUET, Nivel.PRINCIPIANTE);
+        
+        //Prueba de busqueda de partidos por ubicacion de parte de un Usuario. 
+        Ubicacion ubicacionLuis = Luis.getUbicacion();
+        partidoController.buscarPartidosPorUbicacion(ubicacionLuis, 5);
+        
+        
         
         // Busco los partidos por nivel, por ejemplo avanzado 
         partidoController.buscarPartidosPorNivel(Nivel.AVANZADO);

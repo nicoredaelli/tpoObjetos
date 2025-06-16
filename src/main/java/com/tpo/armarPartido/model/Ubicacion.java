@@ -45,5 +45,17 @@ public class Ubicacion {
 		this.longitud = longitud;
 	}
 	
-
+    public double distanciaCuadradoA(Ubicacion otraUbicacion) {
+        if (otraUbicacion == null) {
+            throw new IllegalArgumentException("La ubicación de destino no puede ser null");
+        }
+        double dx = this.latitud - otraUbicacion.latitud;
+        double dy = this.longitud - otraUbicacion.longitud;
+        return dx * dx + dy * dy;
+    }
+    
+    public double distanciaA(Ubicacion otraUbicacion) {
+        return Math.sqrt(distanciaCuadradoA(otraUbicacion));
+    }
+    
 }

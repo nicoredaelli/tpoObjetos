@@ -1,22 +1,16 @@
 package com.tpo.armarPartido.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import com.tpo.armarPartido.enums.Deporte;
-import com.tpo.armarPartido.enums.Nivel;
-import com.tpo.armarPartido.model.Notificador;
-import com.tpo.armarPartido.model.Partido;
-import com.tpo.armarPartido.model.Ubicacion;
-import com.tpo.armarPartido.model.Usuario;
-import com.tpo.armarPartido.service.AdapterMail;
-import com.tpo.armarPartido.service.AdapterNotificacionMail;
-import com.tpo.armarPartido.service.EstrategiaEmparejamiento;
-import com.tpo.armarPartido.service.iObserver;
-import com.tpo.armarPartido.service.estados.EstadoPartido;
-import com.tpo.armarPartido.service.estados.NecesitamosJugadores;
-import com.tpo.armarPartido.service.estados.PartidoArmado;
+import com.tpo.armarPartido.enums.*;
+import com.tpo.armarPartido.model.*;
+import com.tpo.armarPartido.service.*;
+import com.tpo.armarPartido.service.estados.*;
+import utils.*;
 
 public class ControllerPartido {
 	
@@ -73,6 +67,40 @@ public class ControllerPartido {
         if (!encontrados) {
             System.out.println("No se encontraron partidos con el nivel: " + nivel);
         }
+    }
+    
+    public void buscarPartidosPorUbicacion(Ubicacion ubicacionCentral, int cantidadPartidos) {
+    	if(ubicacionCentral == null) {
+    		System.err.println("La ubicacion esta vacia.");
+    	}
+    	
+    	List<Partido> partidosEnEstadoNecesitamosJugadores = new ArrayList<Partido>();
+    	for(Partido partido:partidos) {
+    		if(partido.getEstado().toString().equals("NecesitamosJugadores")) {
+    			partidosEnEstadoNecesitamosJugadores.add(partido);
+    		}
+    	}
+    	
+    	buscarCincoMasCercanos(partidosEnEstadoNecesitamosJugadores, ubicacionCentral, cantidadPartidos);
+    }
+    
+    public List<Partido> buscarCincoMasCercanos(List<Partido> listaPartidos, Ubicacion ubicacionCentral, int cantidadPartidos) {
+    	final int LIMITE_BUSQUEDA = cantidadPartidos;
+    	
+    	if (ubicacionCentral == null) {
+            throw new IllegalArgumentException("La ubicación central no puede ser null");
+        }
+        if (listaPartidos == null || listaPartidos.isEmpty()) {
+            return Collections.emptyList();
+        }
+        List<Partido> partidosCercanos = listaPartidos.stream()
+                .filter(p -> p.getUbicacion() != null)
+                .sorted(new PartidoPorDistanciaComparator(ubicacionCentral))
+                .limit(LIMITE_BUSQUEDA)
+                .collect(Collectors.toList());
+        	System.out.println("La ubicacion actual del jugador es: " + ubicacionCentral.getLatitud() + " " + ubicacionCentral.getLongitud());
+            utilsPartido.printPartidos(partidosCercanos);
+            return partidosCercanos;
     }
     
     public Partido getPartidoPorID(int id) {
