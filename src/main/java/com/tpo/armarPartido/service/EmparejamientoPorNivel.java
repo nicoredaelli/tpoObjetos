@@ -22,16 +22,17 @@ public class EmparejamientoPorNivel implements EstrategiaEmparejamiento {
     public List<Usuario> emparejar(Partido partido, List<Usuario> jugadores) {
         Nivel nivelRequerido = partido.getNivel();
         Deporte deporte = partido.getDeporte();
-
         List<Usuario> jugadoresSeleccionados = new ArrayList<>();
-
+        int jugadorCreador = 0;
+        jugadoresSeleccionados.add(partido.getJugadoresParticipan().get(jugadorCreador));
         for (Usuario jugador : jugadores) {
-            Nivel nivelJugador = jugador.getNivelesPorDeporte().get(deporte);
-
+            if (jugadoresSeleccionados.contains(jugador)) {
+                continue; 
+            }
+        	        	Nivel nivelJugador = jugador.getNivelesPorDeporte().get(deporte);
             if (nivelJugador != null && nivelJugador == nivelRequerido) {
                 jugadoresSeleccionados.add(jugador);
                 System.out.println("Emparejando Jugadores por Nivel " + jugador.getNombre() + " agregado.");
-
                 if (jugadoresSeleccionados.size() >= partido.getCantidadJugadores()) {
                     break;
                 }

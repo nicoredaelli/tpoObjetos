@@ -26,6 +26,8 @@ public class EmparejamientoPorUbicacion implements EstrategiaEmparejamiento {
     public List<Usuario> emparejar(Partido partido, List<Usuario> jugadores) {
         Ubicacion ubicacionPartido = partido.getUbicacion();
         List<Usuario> jugadoresSeleccionados = new ArrayList<>();
+        int jugadorCreador = 0;
+        jugadoresSeleccionados.add(partido.getJugadoresParticipan().get(jugadorCreador));
         for (Usuario jugador : jugadores) {
             if (jugadoresSeleccionados.contains(jugador)) {
                 continue; // Saltar si ya está seleccionado
