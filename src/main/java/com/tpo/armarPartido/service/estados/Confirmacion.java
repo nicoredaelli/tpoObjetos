@@ -5,23 +5,17 @@ import java.util.Date;
 
 
 import com.tpo.armarPartido.model.Partido;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 
-@Builder
-@Getter
-@Setter
-@AllArgsConstructor
 public class Confirmacion implements EstadoPartido {
     
-	@Override
+	private static final String mensaje = "El partido esta listo para comenzar. \n -------------------------";
+
+    public Confirmacion() {}
+
+    @Override
     public String toString() {
 		return "Confirmacion";
 	}
-
-	private static final String mensaje = "El partido esta listo para comenzar. \n -------------------------";
 
     @Override
     public void cancelar(Partido partido) {

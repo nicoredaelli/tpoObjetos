@@ -1,50 +1,37 @@
 package com.tpo.armarPartido.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Ubicacion {
-    private double latitud ;
+    private double latitud;
     private double longitud;
-    
-    
-	public Ubicacion(double latitud, double longitud) {
-		this.latitud = latitud;
-		this.longitud = longitud;
-	}
 
+    public Ubicacion() {}
 
-	@Override
-	public String toString() {
-		return "Ubicacion [latitud=" + latitud + ", longitud=" + longitud + "]";
-	}
+    public Ubicacion(double latitud, double longitud) {
+        this.latitud = latitud;
+        this.longitud = longitud;
+    }
 
+    public double getLatitud() {
+        return latitud;
+    }
 
-	public double getLatitud() {
-		return latitud;
-	}
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
+    }
 
+    public double getLongitud() {
+        return longitud;
+    }
 
-	public void setLatitud(double latitud) {
-		this.latitud = latitud;
-	}
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
 
+    @Override
+    public String toString() {
+        return "Ubicacion [latitud=" + latitud + ", longitud=" + longitud + "]";
+    }
 
-	public double getLongitud() {
-		return longitud;
-	}
-
-
-	public void setLongitud(double longitud) {
-		this.longitud = longitud;
-	}
-	
     public double distanciaCuadradoA(Ubicacion otraUbicacion) {
         if (otraUbicacion == null) {
             throw new IllegalArgumentException("La ubicación de destino no puede ser null");
@@ -53,9 +40,8 @@ public class Ubicacion {
         double dy = this.longitud - otraUbicacion.longitud;
         return dx * dx + dy * dy;
     }
-    
+
     public double distanciaA(Ubicacion otraUbicacion) {
         return Math.sqrt(distanciaCuadradoA(otraUbicacion));
     }
-    
 }

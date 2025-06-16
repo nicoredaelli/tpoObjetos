@@ -3,17 +3,25 @@ package com.tpo.armarPartido.service.estados;
 import com.tpo.armarPartido.model.Partido;
 import java.util.List;
 import com.tpo.armarPartido.model.Comentario;
-import lombok.*;
 
-@Builder
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Finalizado implements EstadoPartido {
 
     private static final String mensaje = "El partido ya finalizo! \n -------------------------";
     private List<Comentario> comentarios;
+
+    public Finalizado() {}
+
+    public Finalizado(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
 
     @Override
 	public String toString() {

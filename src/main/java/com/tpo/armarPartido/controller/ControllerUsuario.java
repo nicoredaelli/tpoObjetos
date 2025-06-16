@@ -1,5 +1,7 @@
 package com.tpo.armarPartido.controller;
 
+import com.tpo.armarPartido.dto.UsuarioDTO;
+import com.tpo.armarPartido.dto.DTOMapper;
 import com.tpo.armarPartido.enums.Deporte;
 import com.tpo.armarPartido.enums.MedioNotificacion;
 import com.tpo.armarPartido.enums.Nivel;
@@ -9,6 +11,7 @@ import com.tpo.armarPartido.model.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ControllerUsuario {
     private static ControllerUsuario instancia;
@@ -26,10 +29,15 @@ public class ControllerUsuario {
         return instancia;
     }
 
+    public void crearUsuario(UsuarioDTO usuarioDTO, String contrasena) {
+        Usuario nuevo = DTOMapper.toUsuario(usuarioDTO, contrasena);
+        usuarios.add(nuevo);
+        System.out.println(" + Se creó el usuario: " + nuevo.getNombre());
+    }
+
     public void crearUsuario(String nombre, String correo, String contrasena,
                              Map<Deporte, Nivel> nivelesPorDeporte,
                              MedioNotificacion medioNotificacion, Ubicacion ubicacion) {
-
         Usuario nuevo = new Usuario(nombre, correo, contrasena, nivelesPorDeporte, medioNotificacion, ubicacion);
         usuarios.add(nuevo);
         System.out.println(" + Se creó el usuario: " + nuevo.getNombre());
@@ -37,6 +45,15 @@ public class ControllerUsuario {
 
     public void eliminarUsuario(String correo) {
         usuarios.removeIf(u -> u.getCorreo().equalsIgnoreCase(correo));
+    }
+
+    public void modificarUsuario(String correo, UsuarioDTO usuarioDTO, String contrasena) {
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getCorreo().equalsIgnoreCase(correo)) {
+                usuarios.set(i, DTOMapper.toUsuario(usuarioDTO, contrasena));
+                return;
+            }
+        }
     }
 
     public void modificarUsuario(String correo, Usuario usuarioModificado) {
@@ -48,14 +65,18 @@ public class ControllerUsuario {
         }
     }
 
+    public List<UsuarioDTO> getUsuariosDTO() {
+        return usuarios.stream().map(DTOMapper::toUsuarioDTO).collect(Collectors.toList());
+    }
+
     public List<Usuario> getUsuarios() {
         return new ArrayList<>(usuarios);
     }
 
-    public Usuario getUsuarioPorNombre(String nombre) {
+    public UsuarioDTO getUsuarioDTOPorNombre(String nombre) {
         for (Usuario usuario : usuarios) {
             if (usuario.getNombre().equalsIgnoreCase(nombre)) {
-                return usuario;
+                return DTOMapper.toUsuarioDTO(usuario);
             }
         }
         return null;
@@ -70,4 +91,12 @@ public class ControllerUsuario {
     	}
     }
     
+    public Usuario getUsuarioPorNombre(String nombre) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNombre().equalsIgnoreCase(nombre)) {
+                return usuario;
+            }
+        }
+        return null;
+    }
 }

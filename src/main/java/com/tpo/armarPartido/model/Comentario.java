@@ -1,11 +1,12 @@
 package com.tpo.armarPartido.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.*;
-
-@Getter
-@Setter
+@Document(collection = "comentarios")
 public class Comentario {
+    @Id
+    private String id;
     private Usuario jugador;
     private String comentario;
 
@@ -18,12 +19,12 @@ public class Comentario {
         return jugador;
     }
 
-    public String getComentario() {
-        return comentario;
-    }
-
     public void setJugador(Usuario jugador) {
         this.jugador = jugador;
+    }
+
+    public String getComentario() {
+        return comentario;
     }
 
     public void setComentario(String comentario) {
