@@ -60,4 +60,14 @@ public class ControllerUsuario {
         }
         return null;
     }
+    
+    public void agregarDeporteNivel(String correo, Deporte deporteNuevo, Nivel nivelDeDeporte) {
+    	for(Usuario usuario:usuarios) {
+    		if(usuario.getCorreo().equalsIgnoreCase(correo)) {
+    			usuario.getNivelesPorDeporte().put(deporteNuevo, nivelDeDeporte);
+    			System.out.println("Se agrego a " + usuario.getNombre() + " el deporte " + deporteNuevo + " con el nivel " + nivelDeDeporte);
+    		}
+    	}
+    }
+    
 }

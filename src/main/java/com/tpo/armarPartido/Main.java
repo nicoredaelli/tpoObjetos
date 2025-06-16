@@ -2,6 +2,7 @@ package com.tpo.armarPartido;
 
 import com.tpo.armarPartido.controller.ControllerPartido;
 import com.tpo.armarPartido.controller.ControllerUsuario;
+import com.tpo.armarPartido.enums.Deporte;
 import com.tpo.armarPartido.enums.Nivel;
 import com.tpo.armarPartido.model.Usuario;
 import utils.GenerarPartidos;
@@ -26,6 +27,8 @@ public class Main {
         Usuario Luis = userController.getUsuarioPorNombre("Luis Martinez");
         Usuario Ana = userController.getUsuarioPorNombre("Ana Gomez");
         Usuario Juan = userController.getUsuarioPorNombre("Juan Perez");
+        
+        userController.agregarDeporteNivel("ana@example.com", Deporte.BASQUET, Nivel.PRINCIPIANTE);
         
         // Busco los partidos por nivel, por ejemplo avanzado 
         partidoController.buscarPartidosPorNivel(Nivel.AVANZADO);
