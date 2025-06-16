@@ -49,5 +49,6 @@ public class Main {
         partidoController.comenzarPartido(0, Luis);
         partidoController.finalizarPartido(0, Luis);
         
+        partidoController.comentarPartido(idPartidoElegido, Juan, "Me encanto el partido!!");
     }
 } 

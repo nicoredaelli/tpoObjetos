@@ -1,6 +1,7 @@
 package com.tpo.armarPartido.service.estados;
 
 import com.tpo.armarPartido.model.Partido;
+import com.tpo.armarPartido.model.Usuario;
 
 public interface EstadoPartido {
     void cancelar(Partido partido);
@@ -9,4 +10,5 @@ public interface EstadoPartido {
     void comenzar(Partido partido);
     void finalizar(Partido partido);
     String getMessage(Partido partido);
+    void comentar(Usuario jugador, String comentario);
 }

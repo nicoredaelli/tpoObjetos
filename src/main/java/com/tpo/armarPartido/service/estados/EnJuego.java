@@ -3,6 +3,7 @@ package com.tpo.armarPartido.service.estados;
 import java.util.Date;
 
 import com.tpo.armarPartido.model.Partido;
+import com.tpo.armarPartido.model.Usuario;
 
 public class EnJuego implements EstadoPartido {
     private static final String mensaje = "El partido ya comenzo! \n -------------------------";
@@ -58,5 +59,11 @@ public class EnJuego implements EstadoPartido {
         return mensaje;
 
     }
+
+	@Override
+	public void comentar(Usuario jugador, String comentario) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

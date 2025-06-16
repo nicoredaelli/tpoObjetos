@@ -217,4 +217,16 @@ public class ControllerPartido {
         }
         return null;
     }
+    
+    public void comentarPartido(int id, Usuario jugador, String comentario) {
+    	Partido partido = partidos.get(id);
+    	EstadoPartido estadoActual = partido.getEstado();
+    	if(estadoActual.toString().equalsIgnoreCase("Finalizado")) {
+    		if(partido.esParticipante(jugador)) {
+    			partido.comentar(jugador, comentario);
+    			System.out.println("El jugador: " + jugador.getNombre() + " dejo el siguiente comentario: " + comentario);
+    		}
+    	}
+    	
+    }
 }

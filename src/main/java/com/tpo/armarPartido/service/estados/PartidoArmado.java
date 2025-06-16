@@ -55,4 +55,10 @@ public class PartidoArmado implements EstadoPartido {
     public String getMessage(Partido partido) {
         return String.format(mensaje, partido.getDeporte(), partido.getNivel(), partido.getCreadorPartido(partido));
     }
+
+	@Override
+	public void comentar(Usuario jugador, String comentario) {
+		// TODO Auto-generated method stub
+		
+	}
 }

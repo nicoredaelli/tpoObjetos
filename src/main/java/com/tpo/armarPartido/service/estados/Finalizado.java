@@ -1,13 +1,16 @@
 package com.tpo.armarPartido.service.estados;
 
 import com.tpo.armarPartido.model.Partido;
+import com.tpo.armarPartido.model.Usuario;
+
+import java.util.ArrayList;
 import java.util.List;
 import com.tpo.armarPartido.model.Comentario;
 
 public class Finalizado implements EstadoPartido {
 
     private static final String mensaje = "El partido ya finalizo! \n -------------------------";
-    private List<Comentario> comentarios;
+    private List<Comentario> comentarios = new ArrayList<Comentario>();
 
     public Finalizado() {}
 
@@ -25,7 +28,7 @@ public class Finalizado implements EstadoPartido {
 
     @Override
 	public String toString() {
-		return "Finalizado []";
+		return "Finalizado";
 	}
 
 	@Override
@@ -64,8 +67,14 @@ public class Finalizado implements EstadoPartido {
 
     }
 
-    public void agregarComentario(Comentario comentario) {
-        comentarios.add(comentario);
-    }
+
+	@Override
+	public void comentar(Usuario jugador, String comentario) {
+		Comentario comentarioNuevo = new Comentario(jugador, comentario);
+		comentarios.add(comentarioNuevo);
+		
+	}
+
+
 
 }

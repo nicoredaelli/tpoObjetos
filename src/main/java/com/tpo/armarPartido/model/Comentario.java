@@ -15,7 +15,7 @@ public class Comentario {
         this.comentario = comentario;
     }
 
-    public Usuario getJugador() {
+	public Usuario getJugador() {
         return jugador;
     }
 

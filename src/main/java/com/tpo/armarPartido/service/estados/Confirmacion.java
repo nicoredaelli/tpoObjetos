@@ -5,6 +5,7 @@ import java.util.Date;
 
 
 import com.tpo.armarPartido.model.Partido;
+import com.tpo.armarPartido.model.Usuario;
 
 public class Confirmacion implements EstadoPartido {
     
@@ -61,5 +62,11 @@ public class Confirmacion implements EstadoPartido {
         return mensaje;
 
     }
+
+	@Override
+	public void comentar(Usuario jugador, String comentario) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

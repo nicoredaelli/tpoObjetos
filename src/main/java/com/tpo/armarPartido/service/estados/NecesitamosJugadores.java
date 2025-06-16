@@ -1,6 +1,7 @@
 package com.tpo.armarPartido.service.estados;
 
 import com.tpo.armarPartido.model.Partido;
+import com.tpo.armarPartido.model.Usuario;
 
 
 public class NecesitamosJugadores implements EstadoPartido {
@@ -45,6 +46,12 @@ public class NecesitamosJugadores implements EstadoPartido {
     public String getMessage(Partido partido) {
         return mensaje;
     }
+
+	@Override
+	public void comentar(Usuario jugador, String comentario) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 
