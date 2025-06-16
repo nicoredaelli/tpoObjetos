@@ -32,14 +32,11 @@ public class Main {
         // Armo el partido que elegi y se agregan de jugadores a partir de la estrategia definida en el partido. 
         int idPartidoElegido = 0;
         partidoController.armarPartido(idPartidoElegido);
-        
-        System.out.println(partidoController.getPartidoID(idPartidoElegido));
-        
+        // Pido las confirmaciones de los jugadores participantes. 
         partidoController.confirmarPartido(0, Luis);
         partidoController.confirmarPartido(0, Juan);
-        
+        // Solo el creador puedo comenzar el partido en su horario y finalizarlo una vez que haya pasado terminado su horario segun la duracion.
         partidoController.comenzarPartido(0, Luis);
-        
         partidoController.finalizarPartido(0, Luis);
         
     }
