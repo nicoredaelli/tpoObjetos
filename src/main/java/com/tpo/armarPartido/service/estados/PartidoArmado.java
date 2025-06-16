@@ -1,11 +1,6 @@
 package com.tpo.armarPartido.service.estados;
 
 import com.tpo.armarPartido.model.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-
 
 public class PartidoArmado implements EstadoPartido {
 
