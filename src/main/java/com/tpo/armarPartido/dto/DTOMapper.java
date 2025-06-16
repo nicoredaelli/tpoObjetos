@@ -42,7 +42,7 @@ public class DTOMapper {
         if (partido == null) return null;
         List<UsuarioDTO> jugadoresDTO = partido.getJugadoresParticipan() == null ? null :
             partido.getJugadoresParticipan().stream().map(DTOMapper::toUsuarioDTO).collect(Collectors.toList());
-        return new PartidoDTO(
+        PartidoDTO dto = new PartidoDTO(
             partido.getDeporte(),
             partido.getCantidadJugadores(),
             partido.getDuracion(),
@@ -52,6 +52,8 @@ public class DTOMapper {
             partido.getNivel(),
             jugadoresDTO
         );
+        dto.setId(partido.getId());
+        return dto;
     }
 
     // Comentario -> ComentarioDTO
