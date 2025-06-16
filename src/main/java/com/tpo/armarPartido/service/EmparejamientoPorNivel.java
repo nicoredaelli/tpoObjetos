@@ -12,7 +12,13 @@ import java.util.List;
 @Component
 public class EmparejamientoPorNivel implements EstrategiaEmparejamiento {
 
+	
     @Override
+	public String toString() {
+		return "Emparejamiento Por Nivel";
+	}
+
+	@Override
     public List<Usuario> emparejar(Partido partido, List<Usuario> jugadores) {
         Nivel nivelRequerido = partido.getNivel();
         Deporte deporte = partido.getDeporte();
@@ -24,14 +30,14 @@ public class EmparejamientoPorNivel implements EstrategiaEmparejamiento {
 
             if (nivelJugador != null && nivelJugador == nivelRequerido) {
                 jugadoresSeleccionados.add(jugador);
-                System.out.println("Emparejando Jugadores por Nivel " + jugador.getNombre() + "agregado.");
+                System.out.println("Emparejando Jugadores por Nivel " + jugador.getNombre() + " agregado.");
 
                 if (jugadoresSeleccionados.size() >= partido.getCantidadJugadores()) {
                     break;
                 }
             }
             else{
-                System.out.println("Emparejando Jugadores por Nivel" + jugador.getNombre() + "no tiene el nivel suficiente.");
+                System.out.println("Emparejando Jugadores por Nivel " + jugador.getNombre() + " no tiene el nivel suficiente.");
 
             }
         }

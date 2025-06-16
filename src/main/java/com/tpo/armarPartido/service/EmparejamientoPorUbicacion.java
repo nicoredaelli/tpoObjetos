@@ -15,9 +15,14 @@ import java.util.List;
 @Component
 public class EmparejamientoPorUbicacion implements EstrategiaEmparejamiento {
 
-    private final int DISTANCIA_MAXIMA = 10; // Radio máximo de distancia
-
+    private static final int DISTANCIA_MAXIMA = 10; 
+    
     @Override
+	public String toString() {
+		return "Emparejamiento Por Ubicacion";
+	}
+
+	@Override
     public List<Usuario> emparejar(Partido partido, List<Usuario> jugadores) {
         Ubicacion ubicacionPartido = partido.getUbicacion();
         List<Usuario> jugadoresSeleccionados = new ArrayList<>();
@@ -29,14 +34,14 @@ public class EmparejamientoPorUbicacion implements EstrategiaEmparejamiento {
 
             if (distancia <= DISTANCIA_MAXIMA) {
                 jugadoresSeleccionados.add(jugador);
-                System.out.println("Emparejando Jugadores por Ubicacion " + jugador.getNombre() + "cerca, agregado.");
+                System.out.println("Emparejando Jugadores por Ubicacion " + jugador.getNombre() + " cerca, agregado.");
 
                 if (jugadoresSeleccionados.size() >= partido.getCantidadJugadores()) {
                     break;
                 }
             }
             else{
-                System.out.println("Emparejando Jugadores por Ubicacion " + jugador.getNombre() + "Muy Lejos");
+                System.out.println("Emparejando Jugadores por Ubicacion " + jugador.getNombre() + " Muy Lejos");
             }
         }
 
@@ -51,7 +56,7 @@ public class EmparejamientoPorUbicacion implements EstrategiaEmparejamiento {
     private double calcularDistancia(Ubicacion ubi1, Ubicacion ubi2) {
         double x = ubi1.getLatitud() - ubi2.getLatitud();
         double y = ubi1.getLongitud() - ubi2.getLongitud();
-        return Math.sqrt(x * x + y * y); // Pitagoras para obtener distancia recta entre dos puntos. Distancia = √2 de (Delta X)2  + (Delta Y)2
+        return Math.sqrt(x * x + y * y); 
     }
 }
 

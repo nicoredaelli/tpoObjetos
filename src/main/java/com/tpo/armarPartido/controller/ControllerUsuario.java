@@ -19,9 +19,9 @@ public class ControllerUsuario {
     }
 
     public static ControllerUsuario getInstancia() {
-        System.out.println("Inicio Controlador de Usuarios");
         if (instancia == null) {
             instancia = new ControllerUsuario();
+            System.out.println("Inicio Controlador de Usuarios");
         }
         return instancia;
     }

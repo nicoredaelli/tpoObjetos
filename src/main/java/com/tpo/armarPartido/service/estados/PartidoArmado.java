@@ -29,9 +29,8 @@ public class PartidoArmado implements EstadoPartido {
 
     @Override
     public void confirmar(Partido partido) {
-        // Debemos validar antes que el usuario este en este partido.
         confirmaciones++;
-        System.out.println("Un usuario confirmo");
+        System.out.println("Un usuario confirmo! Tenemos "+ confirmaciones + " en total. " );
         if (confirmaciones >= partido.getJugadoresParticipan().size()) {
             partido.cambiarEstado(new Confirmacion());
             
@@ -51,10 +50,6 @@ public class PartidoArmado implements EstadoPartido {
 
     @Override
     public String getMessage() {
-        return mensaje;
-    }
-
-/*    public String getMensaje() {
         return String.format(mensaje, confirmaciones);
-    }*/
+    }
 }

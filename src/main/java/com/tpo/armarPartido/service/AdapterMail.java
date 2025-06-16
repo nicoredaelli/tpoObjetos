@@ -12,6 +12,7 @@ public class AdapterMail implements AdapterNotificacionMail {
     @Override
     public void notificar(Notificacion notificacion) {
         System.out.println("Enviando Email a direccion de correo:" + notificacion.getUsuario().getCorreo());
+        System.out.println("Mensaje: " + notificacion.getMensaje());
     }
 
 /*    @Autowired

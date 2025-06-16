@@ -55,6 +55,7 @@ public class Partido {
         EstadoPartido estadoAnterior = this.estado;
         this.estado = nuevo;
         System.out.println("++ Nuevo estado: " + this.getEstado());
+        System.out.println("-----------------------------------");
         // Crear notificación con información del cambio
         notificarObservadores();
     }
@@ -157,7 +158,4 @@ public class Partido {
         this.jugadoresParticipan = jugadoresParticipan;
     }
 
-    public void setEstado(EstadoPartido estado) {
-        this.estado = estado;
-    }
 }
