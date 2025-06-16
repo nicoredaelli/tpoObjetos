@@ -63,12 +63,6 @@ public class EmparejamientoPorUbicacion implements EstrategiaEmparejamiento {
         return jugadoresSeleccionados;
     }
     
-
-    @Override
-    public String getNombreEstrategia() {
-        return "Por Ubicación Cercana";
-    }
-
     private double calcularDistancia(Ubicacion ubi1, Ubicacion ubi2) {
         double x = ubi1.getLatitud() - ubi2.getLatitud();
         double y = ubi1.getLongitud() - ubi2.getLongitud();

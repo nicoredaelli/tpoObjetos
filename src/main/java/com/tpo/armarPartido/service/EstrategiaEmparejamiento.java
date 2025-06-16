@@ -11,7 +11,5 @@ public interface EstrategiaEmparejamiento {
 
     List<Usuario> emparejar(Partido partido, List<Usuario> jugadores);
 
-    String getNombreEstrategia();
-
 
 }

@@ -71,8 +71,5 @@ public class EmparejamientoPorNivel implements EstrategiaEmparejamiento {
         return jugadoresSeleccionados;
     }
 
-    @Override
-    public String getNombreEstrategia() {
-        return "Por Nivel de Habilidad";
-    }
+
 }

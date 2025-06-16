@@ -159,7 +159,7 @@ public class ControllerPartido {
             partido.setJugadoresParticipan(seleccionados);
             if (partido.getJugadoresParticipan().size() >= partido.getCantidadJugadores()) {
             	partido.getEstado().armar(partido);
-            	System.out.println("✅ Partido armado con éxito con estrategia: " + partido.getEmparejamiento().getNombreEstrategia());
+            	System.out.println("✅ Partido armado con éxito con estrategia: " + partido.getEmparejamiento().toString());
         } 	else {
             	System.out.println("⚠️ No se pudo armar el partido. Jugadores seleccionados: " + seleccionados.size() + " --> falta de Jugadores Online");
         	}
