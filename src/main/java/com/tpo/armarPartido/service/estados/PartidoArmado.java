@@ -10,7 +10,7 @@ import lombok.Setter;
 public class PartidoArmado implements EstadoPartido {
 
     private int confirmaciones = 0;
-    private static final String mensaje = "Ya se confirmaron %d jugadores";
+    private static final String mensaje = "Ya sos parte del partido %s! Nivel: %s Por favor envia tu confirmacion al partido del jugador:  %s \n -------------------------";
 
     @Override
     public void cancelar(Partido partido) {
@@ -32,9 +32,7 @@ public class PartidoArmado implements EstadoPartido {
         confirmaciones++;
         System.out.println("Un usuario confirmo! Tenemos "+ confirmaciones + " en total. " );
         if (confirmaciones >= partido.getJugadoresParticipan().size()) {
-            partido.cambiarEstado(new Confirmacion());
-            
-            
+            partido.cambiarEstado(new Confirmacion());            
         }
     }
 
@@ -49,7 +47,7 @@ public class PartidoArmado implements EstadoPartido {
     }
 
     @Override
-    public String getMessage() {
-        return String.format(mensaje, confirmaciones);
+    public String getMessage(Partido partido) {
+        return String.format(mensaje, partido.getDeporte(), partido.getNivel(), partido.getCreadorPartido(partido));
     }
 }

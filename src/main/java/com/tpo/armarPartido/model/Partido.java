@@ -38,9 +38,9 @@ public class Partido {
         this.horario = horario;
         this.estado = estado;
         this.emparejamiento = emparejamiento;
-        this.jugadoresParticipan = jugadoresParticipan != null ? jugadoresParticipan : new ArrayList<>();
+        this.jugadoresParticipan = jugadoresParticipan;
         this.nivel = nivel;
-        this.observadores = observadores != null ? observadores : new ArrayList<>();
+        this.observadores = observadores;
     }
 
     @Override
@@ -157,5 +157,10 @@ public class Partido {
     public void setJugadoresParticipan(List<Usuario> jugadoresParticipan) {
         this.jugadoresParticipan = jugadoresParticipan;
     }
+    
+    public String getCreadorPartido(Partido partido) {
+    	return partido.getJugadoresParticipan().get(0).toString();
+    }
+
 
 }

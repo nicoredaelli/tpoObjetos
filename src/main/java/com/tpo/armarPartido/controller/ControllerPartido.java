@@ -121,7 +121,7 @@ public class ControllerPartido {
     	EstadoPartido estadoActual = partido.getEstado();
     	if(partido.esParticipante(jugador)) {
 	    	estadoActual.confirmar(partido);
-	    	estadoActual.getMessage();
+	    	estadoActual.getMessage(partido);
 	    	
     	}
     	else {

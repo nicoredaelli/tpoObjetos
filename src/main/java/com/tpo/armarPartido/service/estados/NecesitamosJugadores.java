@@ -42,7 +42,7 @@ public class NecesitamosJugadores implements EstadoPartido {
         // No se permite finalizar en este estado
     }
 
-    public String getMessage() {
+    public String getMessage(Partido partido) {
         return mensaje;
     }
 /*    @Override

@@ -41,7 +41,7 @@ public class Cancelado implements EstadoPartido {
     }
 
     @Override
-    public String getMessage() {
+    public String getMessage(Partido partido) {
         return mensaje;
 
     }

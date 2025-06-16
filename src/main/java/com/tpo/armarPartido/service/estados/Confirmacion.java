@@ -20,7 +20,7 @@ public class Confirmacion implements EstadoPartido {
 		return "Confirmacion";
 	}
 
-	private static final String mensaje = "El partido esta listo para comenzar.";
+	private static final String mensaje = "El partido esta listo para comenzar. \n -------------------------";
 
     @Override
     public void cancelar(Partido partido) {
@@ -62,7 +62,7 @@ public class Confirmacion implements EstadoPartido {
     }
 
     @Override
-    public String getMessage() {
+    public String getMessage(Partido partido) {
         return mensaje;
 
     }

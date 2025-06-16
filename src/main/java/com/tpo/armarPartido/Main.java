@@ -29,16 +29,16 @@ public class Main {
         
     	// Genero Partidos
     	GenerarPartidos.generar(userController, partidoController);
-        // Previo a armar un partido necesito un usuario que lo cree y un horario del tipo Date. 
 
+    	// Instancio usuarios para Usar
         Usuario Luis = userController.getUsuarioPorNombre("Luis Martinez");
         Usuario Ana = userController.getUsuarioPorNombre("Ana Gomez");
         Usuario Juan = userController.getUsuarioPorNombre("Juan Perez");
         
+        // Busco los partidos por nivel, por ejemplo avanzado 
         partidoController.buscarPartidosPorNivel(Nivel.AVANZADO);
-        
+        // Armo el partido que elegi y se agregan de jugadores a partir de la estrategia definida en el partido. 
         int idPartidoElegido = 0;
-        
         partidoController.armarPartido(idPartidoElegido);
         
         System.out.println(partidoController.getPartidoID(idPartidoElegido));
@@ -47,8 +47,5 @@ public class Main {
         partidoController.confirmarPartido(0, Ana);
         
         
-        
-        
-
     }
 } 

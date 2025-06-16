@@ -8,5 +8,5 @@ public interface EstadoPartido {
     void confirmar(Partido partido);
     void comenzar(Partido partido);
     void finalizar(Partido partido);
-    String getMessage();
+    String getMessage(Partido partido);
 }
