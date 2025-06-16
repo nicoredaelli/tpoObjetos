@@ -14,7 +14,7 @@ public class Main {
     	
     	System.out.println("Inicio App ArmarPartido");
     
-    	// Creo controlador y usuarios. 
+    	// Instancio controladores. 
     	ControllerUsuario userController = ControllerUsuario.getInstancia();
     	ControllerPartido partidoController = ControllerPartido.getInstancia();
     	

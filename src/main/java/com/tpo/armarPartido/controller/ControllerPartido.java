@@ -81,12 +81,10 @@ public class ControllerPartido {
     		}
     	}
     	
-    	buscarCincoMasCercanos(partidosEnEstadoNecesitamosJugadores, ubicacionCentral, cantidadPartidos);
+    	buscarMasCercanos(partidosEnEstadoNecesitamosJugadores, ubicacionCentral, cantidadPartidos);
     }
     
-    public List<Partido> buscarCincoMasCercanos(List<Partido> listaPartidos, Ubicacion ubicacionCentral, int cantidadPartidos) {
-    	final int LIMITE_BUSQUEDA = cantidadPartidos;
-    	
+    public List<Partido> buscarMasCercanos(List<Partido> listaPartidos, Ubicacion ubicacionCentral, int cantidadPartidos) {
     	if (ubicacionCentral == null) {
             throw new IllegalArgumentException("La ubicación central no puede ser null");
         }
@@ -96,7 +94,7 @@ public class ControllerPartido {
         List<Partido> partidosCercanos = listaPartidos.stream()
                 .filter(p -> p.getUbicacion() != null)
                 .sorted(new PartidoPorDistanciaComparator(ubicacionCentral))
-                .limit(LIMITE_BUSQUEDA)
+                .limit(cantidadPartidos)
                 .collect(Collectors.toList());
         	System.out.println("La ubicacion actual del jugador es: " + ubicacionCentral.getLatitud() + " " + ubicacionCentral.getLongitud());
             utilsPartido.printPartidos(partidosCercanos);
